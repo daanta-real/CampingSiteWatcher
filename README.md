@@ -1,2 +1,2 @@
 # CampingSiteWatcher
-Vacancy notification app for public camping sites in Seoul
+A Java app for reservation vacancy notification of public camping websites in Seoul
