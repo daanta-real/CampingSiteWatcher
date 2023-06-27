@@ -1,5 +1,5 @@
 # 🏕️ CampingSiteWatcher 🏕️
-A Java app for reservation vacancy notification of public camping websites in Seoul
+- A Java app for reservation vacancy notification of public camping websites in Seoul
 
 # 🏕️ Ambush Targets 🏕️
 - Nanji-do Island 난지도 캠핑장
