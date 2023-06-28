@@ -16,6 +16,8 @@ public class HTMLFetch {
 
     public static String httpFetch_GET(String targetURL) {
 
+        log.debug("▶▶▶ FETCH START: {}", targetURL);
+
         StringBuilder htmlContent = new StringBuilder();
         BufferedReader bufferedReader = null;
 
@@ -28,6 +30,7 @@ public class HTMLFetch {
                 htmlContent.append(line);
                 htmlContent.append("\n");
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -39,8 +42,10 @@ public class HTMLFetch {
                 }
             }
         }
+        String result = htmlContent.toString();
 
-        return htmlContent.toString();
+        log.debug("▶▶▶ FETCH FINISHED. LENGTH: {}", result);
+        return result;
 
     }
 
