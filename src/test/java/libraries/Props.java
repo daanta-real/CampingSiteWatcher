@@ -19,10 +19,12 @@ public class Props {
             log.debug("\n\n<<< LOADING ALL PROPS START >>>");
             instance.load(is);
             log.debug("PROPERTIES LIST: {}", instance.stringPropertyNames());
+            log.debug("　┌──────────────────────────────────────────────────────────────────────────────────────────");
             for (String key : instance.stringPropertyNames()) {
                 String value = instance.getProperty(key);
-                log.debug(" - PROPERTY [{}] = [{}]", key, value);
+                log.debug("　│  {} = '{}'", key, value);
             }
+            log.debug("　└──────────────────────────────────────────────────────────────────────────────────────────");
             log.debug("\n<<< LOADING ALL PROPS FINISHED >>>\n");
         } catch (Exception e) {
             e.printStackTrace();

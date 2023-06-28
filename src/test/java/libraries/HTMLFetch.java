@@ -49,4 +49,83 @@ public class HTMLFetch {
 
     }
 
+//    public static String httpFetch_POST(String targetURL, Map<String, Object> info) {
+//
+//        String result = null;
+//
+//        try {
+//
+//            // BASE SETTINGS
+//            URI url = new URI(targetURL);
+//            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+//            connection.setRequestMethod("POST");
+//            connection.setDoOutput(true);
+//
+//            // RESPONSE TYPE
+//            String responseType = null;
+//            responseType = String.valueOf(info.get("responseType"));
+//            String contentType = switch(responseType) {
+//                case "json", "JSON": yield "application/json";
+//                default: yield null;
+//            };
+//            if(StringUtils.isNotBlank(contentType)) {
+//                connection.setRequestProperty("Content-Type", contentType);
+//            }
+//
+//            // HEADER
+//            log.debug("HEADER START");
+//            Map<String, String> header = (Map<String, String>) info.get("header");
+//            for (Map.Entry<String, String> entry : header.entrySet()) {
+//                String key = entry.getKey(), value = entry.getValue();
+//                log.debug("  - HEADER [{}]: [{}]", key, value);
+//                connection.setRequestProperty(key, value);
+//            }
+//            log.debug("HEADER FINISHED");
+//
+//            // PAYLOAD
+//            log.debug("PAYLOAD START");
+//            Map<String, String> payloadObj = (Map<String, String>) info.get("payload");
+//            String payload = new GsonBuilder().setPrettyPrinting().create().toJson(payloadObj);
+//            log.debug("\n\nPAYLOAD:\n\n{}\n", payload);
+//            log.debug("PAYLOAD FINISHED");
+//
+//            // SHOOT THE REQUEST
+//            try (OutputStream outputStream = connection.getOutputStream()) {
+//                outputStream.write(payload.getBytes("UTF-8"));
+//                outputStream.flush();
+//            }
+//
+//            // GET THE RESPONSE
+//            int responseCode = connection.getResponseCode();
+//            if (responseCode == HttpURLConnection.HTTP_OK) {
+//
+//                // OPEN THE RESPONSE
+//                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+//                StringBuilder response = new StringBuilder();
+//                String line;
+//                while ((line = reader.readLine()) != null) {
+//                    response.append(line);
+//                }
+//                reader.close();
+//
+//                // MAKE THE RESPONSE JSON
+//                String jsonResponse = response.toString();
+//                log.debug("RESPONSE(RESULT: {}", jsonResponse);
+//                result = jsonResponse;
+//
+//            } else {
+//                throw new Exception(String.valueOf(responseCode));
+//            }
+//
+//            // Close the connection
+//            connection.disconnect();
+//
+//        } catch(Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        return result;
+//
+//    }
+
 }
