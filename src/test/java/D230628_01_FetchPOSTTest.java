@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.*;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -35,8 +36,7 @@ public class D230628_01_FetchPOSTTest {
             connection.setDoOutput(true);
 
             // RESPONSE TYPE
-            String responseType = null;
-            responseType = String.valueOf(info.get("responseType"));
+            String responseType = String.valueOf(info.get("responseType"));
             String contentType = switch(responseType) {
                 case "json", "JSON": yield "application/json";
                 default: yield null;
@@ -66,7 +66,7 @@ public class D230628_01_FetchPOSTTest {
 
             // SHOOT THE REQUEST
             try (OutputStream outputStream = connection.getOutputStream()) {
-                outputStream.write(payload.getBytes("UTF-8"));
+                outputStream.write(payload.getBytes(StandardCharsets.UTF_8));
                 outputStream.flush();
             }
 
