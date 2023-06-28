@@ -1,7 +1,6 @@
 import com.google.gson.GsonBuilder;
 import libraries.Props;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -38,12 +37,10 @@ public class D230628_01_FetchPOSTTest {
 
             // RESPONSE TYPE
             String responseType = String.valueOf(info.get("responseType"));
-            String contentType = switch(responseType) {
-                case "json", "JSON": yield "application/json";
-                default: yield null;
-            };
-            if(StringUtils.isNotBlank(contentType)) {
-                connection.setRequestProperty("Content-Type", contentType);
+            switch (responseType) {
+                case "json", "JSON" -> connection.setRequestProperty("Content-Type", "application/json");
+                default -> {
+                }
             }
 
             // HEADER
@@ -119,18 +116,18 @@ public class D230628_01_FetchPOSTTest {
     }
 
     @Test
-    public void test1() {
+    public void testNanji() {
 
-        String targetUrl = p.getProperty("nanjiUrl");
-        String nanjiOption = p.getProperty("nanjiOption");
-        Map<String, String> payload = convertStringToJson(nanjiOption);
-
-        log.debug("\n\nSTART\n\ntargetUrl: {}\nnanjiOption: {}\npayload: {}", targetUrl, nanjiOption, payload);
+        String nanjiUrl = p.getProperty("nanjiUrl");
+        String nanjiHeader = p.getProperty("nanjiHeader");
+        String nanjiPayload = p.getProperty("nanjiPayload");
+        log.debug("\n\nSTART\n\ntargetUrl: {}\nheader: {}\npayload: {}", nanjiUrl, nanjiHeader, nanjiPayload);
 
         Map<String, Object> info = new HashMap<>();
-        info.put("targetUrl", targetUrl);
-        info.put("payload", payload);
-        info.put("responseType", "json");
+        info.put("targetUrl", nanjiUrl);
+        info.put("header", nanjiHeader);
+        info.put("payload", nanjiPayload);
+        //info.put("responseType", "json");
         log.debug("\n\nCOMPLETE REQUEST:\n\n{}\n", new GsonBuilder().setPrettyPrinting().create().toJson(info));
 
         String result = httpFetch_POST(info);
