@@ -4,6 +4,7 @@ plugins {
 
 group = 'com.daanta'
 version = '1.0-SNAPSHOT'
+sourceCompatibility = '20'
 
 repositories {
     mavenCentral()
@@ -53,10 +54,6 @@ dependencies {
     // JSON 처리 라이브러리 GSON
     // https://mvnrepository.com/artifact/com.google.code.gson/gson
     implementation 'com.google.code.gson:gson:latest.integration'
-
-    // HTML 파싱용 JSOUP
-    // https://mvnrepository.com/artifact/org.jsoup/jsoup
-    implementation 'org.jsoup:jsoup:latest.integration'
 
 }
 
