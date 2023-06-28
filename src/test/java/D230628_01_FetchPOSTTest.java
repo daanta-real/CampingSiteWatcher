@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.*;
 import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -109,8 +110,8 @@ public class D230628_01_FetchPOSTTest {
         for (String pair : keyValuePairs) {
             String[] keyValue = pair.split("=");
             if (keyValue.length == 2) {
-                String key = URLDecoder.decode(keyValue[0]);
-                String value = URLDecoder.decode(keyValue[1]);
+                String key = new String(Base64.getDecoder().decode(keyValue[0]));
+                String value = new String(Base64.getDecoder().decode(keyValue[1]));
                 jsonMap.put(key, value);
             }
         }
