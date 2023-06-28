@@ -44,7 +44,7 @@ public class HTMLFetch {
         }
         String result = htmlContent.toString();
 
-        log.debug("▶▶▶ FETCH FINISHED. LENGTH: {}", result);
+        log.debug("▶▶▶ FETCH FINISHED. LENGTH: {}", result.length());
         return result;
 
     }
