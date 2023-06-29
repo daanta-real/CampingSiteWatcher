@@ -1,11 +1,13 @@
-import libraries.Props;
+package archived;
+
+import props.D230627_02_Props;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.Properties;
 
-import static libraries.HTMLFetch.httpFetch_GET;
+import static archived.HTMLFetch.httpFetch_GET;
 
 @Slf4j
 public class D230627_01_FetchGETTest {
@@ -13,7 +15,7 @@ public class D230627_01_FetchGETTest {
     private static Properties p;
     @BeforeAll
     public static void loadProp() {
-        p = Props.getInstance();
+        p = D230627_02_Props.getInstance();
     }
 
     @Test

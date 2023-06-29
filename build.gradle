@@ -55,6 +55,11 @@ dependencies {
     // https://mvnrepository.com/artifact/com.google.code.gson/gson
     implementation 'com.google.code.gson:gson:latest.integration'
 
+    // HTTP REQUEST 등을 처리하기 위한 OKHTTP
+    // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
+    implementation 'com.squareup.okhttp3:okhttp:latest.integration'
+
+
 }
 
 test {

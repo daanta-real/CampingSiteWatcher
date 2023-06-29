@@ -1,9 +1,11 @@
+package archived;
+
 import com.google.gson.GsonBuilder;
-import libraries.Props;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import props.D230627_02_Props;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -21,7 +23,7 @@ public class D230628_01_FetchPOSTTest {
     private static Properties p;
     @BeforeAll
     public static void loadProp() {
-        p = Props.getInstance();
+        p = D230627_02_Props.getInstance();
     }
 
     public static String httpFetch_POST(Map<String, Object> info) {
