@@ -13,10 +13,8 @@ import java.util.Properties;
 public class CampManager {
 
     private static Camp nanji;
-    private CampManager() {
-    }
 
-    public static Map<String, Object> initializeCamp(String campName) {
+    public static Map<String, Object> initializeCampOne(String campName) {
         
         // Prepare property values
         log.debug("\n\n<<< LOADING PROPS OF {} START >>>", campName);
@@ -67,19 +65,16 @@ public class CampManager {
 
     }
 
+    public static void initializeCampAll() {
+        nanji = Camp.builder().campName("nanji").build();
+    }
+
+    // Get Camp instance with the name what user want.
     public static Camp getCamp(String campName) throws Exception {
-
-        // If nanji is not loaded prepare all camp infoes
-        if(nanji == null) {
-            nanji = Camp.builder().campName("nanji").build();
-        }
-
-        // Return
         return switch(campName) {
             case "nanji": yield nanji;
             default: throw new Exception();
         };
-
     }
 
 }

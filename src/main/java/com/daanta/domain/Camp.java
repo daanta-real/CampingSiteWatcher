@@ -17,7 +17,7 @@ public class Camp {
 
     @Builder
     public Camp(String campName) {
-        Map<String, Object> campValues = CampManager.initializeCamp(campName);
+        Map<String, Object> campValues = CampManager.initializeCampOne(campName);
         this.url = String.valueOf(campValues.get("url"));
         this.header = (Map<String, String>) campValues.get("header");
         this.body = (Map<String, String>) campValues.get("body");
