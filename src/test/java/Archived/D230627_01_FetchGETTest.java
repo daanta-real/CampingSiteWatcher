@@ -1,13 +1,13 @@
-package archived;
+package Archived;
 
-import props.D230627_02_Props;
+import Props.D230627_02_Props;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.Properties;
 
-import static archived.D230627_02_HTMLFetch.httpFetch_GET;
+import static Archived.D230627_02_HTMLFetch.httpFetch_GET;
 
 @Slf4j
 public class D230627_01_FetchGETTest {

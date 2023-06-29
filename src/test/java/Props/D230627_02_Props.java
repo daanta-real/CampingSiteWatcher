@@ -1,4 +1,4 @@
-package props;
+package Props;
 
 import lombok.extern.slf4j.Slf4j;
 

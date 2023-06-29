@@ -1,11 +1,11 @@
-package archived;
+package Archived;
 
 import com.google.gson.GsonBuilder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import props.D230627_02_Props;
+import Props.D230627_02_Props;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

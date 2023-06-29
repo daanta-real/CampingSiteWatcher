@@ -1,6 +1,6 @@
-package props;
+package Props;
 
-import libraries.D230629_01_Utils;
+import Libraries.D230629_01_Utils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
