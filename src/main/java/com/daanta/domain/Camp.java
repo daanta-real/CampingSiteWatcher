@@ -16,10 +16,11 @@ public class Camp {
     private Map<String, String> body;
 
     @Builder
-    public Camp(Map<String, Object> prop) {
-        this.url = String.valueOf(prop.get("url"));
-        this.header = (Map<String, String>) prop.get("header");
-        this.body = (Map<String, String>) prop.get("body");
+    public Camp(String campName) {
+        Map<String, Object> campValues = CampManager.initializeCamp(campName);
+        this.url = String.valueOf(campValues.get("url"));
+        this.header = (Map<String, String>) campValues.get("header");
+        this.body = (Map<String, String>) campValues.get("body");
         log.debug("☞ NEW CAMP: {}", Utils.getPrettyJson(this));
     }
 

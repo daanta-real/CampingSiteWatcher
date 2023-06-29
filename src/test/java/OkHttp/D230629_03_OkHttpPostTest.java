@@ -1,12 +1,11 @@
 package OkHttp;
 
-import com.daanta.conf.PropsCamp;
+import com.daanta.domain.CampManager;
 import com.daanta.conf.PropsCommon;
 import com.daanta.domain.Camp;
 import com.daanta.utils.Utils;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
@@ -17,13 +16,10 @@ import java.util.Map;
 public class D230629_03_OkHttpPostTest {
 
     private static Camp nanji;
-    @BeforeAll
-    public static void loadProp() {
-        nanji = Camp.builder().prop(PropsCamp.loadCampingSiteProps("nanji")).build();
-    }
 
-    public ResponseBody post(Camp c) {
+    public ResponseBody campPost(Camp c) throws Exception {
 
+        nanji = CampManager.getCamp("nanji");
         ResponseBody result = null;
 
         // MODE 1. FORM REQUEST
@@ -71,7 +67,7 @@ public class D230629_03_OkHttpPostTest {
         log.debug("TARGET DATE: {}", targetDate);
 
         // GET ALL INFO AS RESULT
-        String responseStr = post(nanji).string();
+        String responseStr = campPost(nanji).string();
         Map<String, Object> result = Utils.gson.fromJson(responseStr, Map.class);
         //log.debug("\n\nRESULT:\n\n{}\n", Utils.getPrettyJson(result));
 

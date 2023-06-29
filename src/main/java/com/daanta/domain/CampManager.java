@@ -1,17 +1,22 @@
-package com.daanta.conf;
+package com.daanta.domain;
 
+import com.daanta.conf.PropsCommon;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-// Testing OkHttp for apply to this project
+// Manage domain of all
 
 @Slf4j
-public class PropsCamp {
+public class CampManager {
 
-    public static Map<String, Object> loadCampingSiteProps(String campName) {
+    private static Camp nanji;
+    private CampManager() {
+    }
+
+    public static Map<String, Object> initializeCamp(String campName) {
         
         // Prepare property values
         log.debug("\n\n<<< LOADING PROPS OF {} START >>>", campName);
@@ -59,6 +64,21 @@ public class PropsCamp {
 
         log.debug("\n<<< LOADING PROPS OF {} FINISHED >>>\n", campName);
         return resultMap;
+
+    }
+
+    public static Camp getCamp(String campName) throws Exception {
+
+        // If nanji is not loaded prepare all camp infoes
+        if(nanji == null) {
+            nanji = Camp.builder().campName("nanji").build();
+        }
+
+        // Return
+        return switch(campName) {
+            case "nanji": yield nanji;
+            default: throw new Exception();
+        };
 
     }
 
