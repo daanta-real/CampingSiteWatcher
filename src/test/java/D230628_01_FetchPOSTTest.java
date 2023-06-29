@@ -1,6 +1,7 @@
 import com.google.gson.GsonBuilder;
 import libraries.Props;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -25,6 +26,9 @@ public class D230628_01_FetchPOSTTest {
 
     public static String httpFetch_POST(Map<String, Object> info) {
 
+        log.debug("┌─────────────────────────┐");
+        log.debug("│ HTTP POST REQUEST START │");
+        log.debug("└─────────────────────────┘");
         String result = null;
 
         try {
@@ -36,41 +40,78 @@ public class D230628_01_FetchPOSTTest {
             connection.setDoOutput(true);
 
             // RESPONSE TYPE
+            log.debug("1. RESPONSE TYPE PREPARING START");
             String responseType = String.valueOf(info.get("responseType"));
             switch (responseType) {
-                case "json", "JSON" -> connection.setRequestProperty("Content-Type", "application/json");
-                default -> {
+                case "json", "JSON" -> {
+                    log.debug("  - RESPONSE TYPE: JSON");
+                    connection.setRequestProperty("Content-Type", "application/json");
                 }
+                default -> log.debug("  - RESPONSE TYPE: NONE");
             }
+            log.debug("1. RESPONSE TYPE PREPARING FINISHED");
 
             // HEADER
-            log.debug("HEADER START");
-            Map<String, String> header = (Map<String, String>) info.get("header");
-            if(header != null) {
-                for (Map.Entry<String, String> entry : header.entrySet()) {
-                    String key = entry.getKey(), value = entry.getValue();
-                    log.debug("  - HEADER [{}]: [{}]", key, value);
-                    connection.setRequestProperty(key, value);
+            log.debug("2. HEADER PREPARING START");
+            Map<String, String> headerMap;
+            String headerStr;
+            Object headerObj = info.get("header");
+            if(headerObj instanceof Map) {
+                headerMap = (Map<String, String>) headerObj;
+                if(!headerMap.isEmpty()) {
+                    log.debug("  - HEADER CLASS: MAP");
+                    for (Map.Entry<String, String> entry : headerMap.entrySet()) {
+                        String key = entry.getKey(), value = entry.getValue();
+                        log.debug("  - HEADER[{}]: [{}]", key, value);
+                        connection.setRequestProperty(key, value);
+                    }
                 }
+                log.debug("  - HEADER: {}", new GsonBuilder().setPrettyPrinting().create().toJson(headerMap));
+            } else if(headerObj instanceof String) {
+                log.debug("  - HEADER CLASS: STRING");
+                headerStr = String.valueOf(headerObj);
+                log.debug("  - HEADER: {}", headerStr);
             }
-            log.debug("HEADER FINISHED");
+            log.debug("2. HEADER PREPARING FINISHED");
 
             // PAYLOAD
-            log.debug("PAYLOAD START");
-            Map<String, String> payloadObj = (Map<String, String>) info.get("payload");
-            String payload = new GsonBuilder().setPrettyPrinting().create().toJson(payloadObj);
-            log.debug("\n\nPAYLOAD:\n\n{}\n", payload);
-            log.debug("PAYLOAD FINISHED");
+            log.debug("3. PAYLOAD PREPARING START");
+            Object payloadObj = info.get("payload");
+            Map<String, String> payloadMap;
+            String payloadStr = null;
+            if(payloadObj instanceof Map) {
+                payloadMap = (Map<String, String>) payloadObj;
+                if(!payloadMap.isEmpty()) {
+                    log.debug("  - PAYLOAD CLASS: MAP");
+                    for (Map.Entry<String, String> entry : payloadMap.entrySet()) {
+                        String key = entry.getKey(), value = entry.getValue();
+                        log.debug("  - PAYLOAD[{}]: [{}]", key, value);
+                        connection.setRequestProperty(key, value);
+                    }
+                }
+                log.debug("  - PAYLOAD: {}", new GsonBuilder().setPrettyPrinting().create().toJson(payloadObj));
+            } else if(payloadObj instanceof String) {
+                log.debug("  - PAYLOAD CLASS: STRING");
+                payloadStr = String.valueOf(headerObj);
+                log.debug("  - PAYLOAD: {}", payloadStr);
+            }
+            log.debug("3. PAYLOAD PREPARING FINISHED");
 
             // SHOOT THE REQUEST
-            try (OutputStream outputStream = connection.getOutputStream()) {
-                outputStream.write(payload.getBytes(StandardCharsets.UTF_8));
-                outputStream.flush();
+            log.debug("4. RESPONSE SHOOT START");
+            if(StringUtils.isNotBlank(payloadStr)) {
+                try (OutputStream outputStream = connection.getOutputStream()) {
+                    outputStream.write(payloadStr.getBytes(StandardCharsets.UTF_8));
+                    outputStream.flush();
+                }
             }
+            log.debug("4. RESPONSE SHOOT FINISHED");
 
             // GET THE RESPONSE
+            log.debug("5. RESPONSE RECEIVING START");
             int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
+
 
                 // OPEN THE RESPONSE
                 BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -89,6 +130,7 @@ public class D230628_01_FetchPOSTTest {
             } else {
                 throw new Exception(String.valueOf(responseCode));
             }
+            log.debug("5. RESPONSE RECEIVING FINISHED");
 
             // Close the connection
             connection.disconnect();
@@ -97,6 +139,12 @@ public class D230628_01_FetchPOSTTest {
             e.printStackTrace();
         }
 
+        log.debug("┌───────────────────┐");
+        log.debug("│ RESPONSE RECEIVED │");
+        log.debug("└───────────────────┘");
+        log.debug(result);
+        log.debug("");
+        log.debug(" - HTTP REQUEST PROCESS FINISHED - ");
         return result;
 
     }
