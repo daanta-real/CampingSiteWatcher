@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Properties;
 
-import static archived.HTMLFetch.httpFetch_GET;
+import static archived.D230627_02_HTMLFetch.httpFetch_GET;
 
 @Slf4j
 public class D230627_01_FetchGETTest {

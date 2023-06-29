@@ -12,7 +12,7 @@ import java.nio.charset.StandardCharsets;
 // HTML Scrapping test
 
 @Slf4j
-public class HTMLFetch {
+public class D230627_02_HTMLFetch {
 
     public static String httpFetch_GET(String targetURL) {
 
