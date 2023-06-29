@@ -9,17 +9,17 @@ import java.util.Properties;
 // Testing OkHttp for apply to this project
 
 @Slf4j
-public class PropsNanji {
+public class PropsCamp {
 
     public static Map<String, Object> loadCampingSiteProps(String campName) {
         
         // Prepare property values
-        log.debug("LOADING PROPS OF {}..", campName);
-        Properties p = Props.getInstance();
+        log.debug("\n\n<<< LOADING PROPS OF {} START >>>", campName);
+        Properties p = PropsCommon.getInstance();
         String url = p.getProperty(campName + "Url");
         String headerStr = p.getProperty(campName + "Header");
         String bodyStr = p.getProperty(campName + "Body");
-        log.debug("\n\nSTART\n\nurl: {}\nheader: {}\nbody: {}", url, headerStr, bodyStr);
+        log.debug("\n  - url: {}\n  - header: {}\n  - body: {}", url, headerStr, bodyStr);
 
         // Header's String separators are: '|' for params, and ',' for key and values
         log.debug("PREPARING HEADERS..");
@@ -54,9 +54,10 @@ public class PropsNanji {
 
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("url", url);
-        resultMap.put("header:", header);
-        resultMap.put("body:", body);
+        resultMap.put("header", header);
+        resultMap.put("body", body);
 
+        log.debug("\n<<< LOADING PROPS OF {} FINISHED >>>\n", campName);
         return resultMap;
 
     }

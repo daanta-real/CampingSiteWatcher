@@ -43,13 +43,14 @@ dependencies {
     // 1. 어떤 롬복을 어떤 타겟에 implement(release/dev 모두) 최신판의 버전 숫자를 필히 명기해줘야 한다.
     // 2. 반드시 Annotation Processor를 활성해줘야 한다.
     //  1) 밑에처럼 annotationProcessor 형식의 dependency도 추가로 선언해 줘야 함
+    //     웬만하면 밑에 네개 다 넣어야 에러 안 남
     //  2) Settings > Build, Execution, Depolyment > Compiler > Annotation Processors
     //     > Enable annotation processing 에 체크해야 함
     // https://mvnrepository.com/artifact/org.projectlombok/lombok
-    implementation 'org.projectlombok:lombok:latest.integration'
-    compileOnly("org.projectlombok:lombok")
-    annotationProcessor 'org.projectlombok:lombok:latest.integration'
-    testAnnotationProcessor 'org.projectlombok:lombok:latest.integration'
+    compileOnly "org.projectlombok:lombok:1.18.28"
+    testCompileOnly "org.projectlombok:lombok:1.18.28"
+    annotationProcessor "org.projectlombok:lombok:1.18.28"
+    testAnnotationProcessor "org.projectlombok:lombok:1.18.28"
 
     // JSON 처리 라이브러리 GSON
     // https://mvnrepository.com/artifact/com.google.code.gson/gson

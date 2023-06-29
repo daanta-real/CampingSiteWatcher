@@ -6,16 +6,16 @@ import java.io.InputStream;
 import java.util.Properties;
 
 @Slf4j
-public class Props {
+public class PropsCommon {
 
     private static Properties instance;
-    private Props() {
+    private PropsCommon() {
     }
 
     public static Properties getInstance() {
         if(instance != null) return instance;
         instance = new Properties();
-        try (InputStream is = Props.class.getClassLoader().getResourceAsStream("config.properties")) {
+        try (InputStream is = PropsCommon.class.getClassLoader().getResourceAsStream("config.properties")) {
             log.debug("\n\n<<< LOADING ALL PROPS START >>>");
             instance.load(is);
             log.debug("PROPERTIES LIST: {}", instance.stringPropertyNames());
