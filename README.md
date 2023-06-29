@@ -16,4 +16,4 @@
 # 🏕️ License 🏕️
 - You must use this source only for personal study purpose. Do not use it for any other purpose or you may be sued by government agencies for real.
 
-개인 공부목적으로만 쓰십시오 그렇지않으면 무슨일이 생겨도 책임 못집니다
+  개인 공부목적으로만 쓰십시오 그렇지않으면 무슨일이 생겨도 책임 못집니다
