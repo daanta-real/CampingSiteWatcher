@@ -1,7 +1,7 @@
 package Threads;
 
 import com.daanta.domain.CampManager;
-import com.daanta.conf.PropsCommon;
+import com.daanta.conf.Props;
 import com.daanta.domain.Camp;
 import com.daanta.utils.HTTPRequester;
 import com.daanta.utils.Utils;
@@ -37,7 +37,7 @@ public class D230629_04_ThreadControl {
 
         // pref
         Camp nanji = CampManager.getCamp("nanji");
-        String targetDate = PropsCommon.getInstance().getProperty("targetDate");
+        String targetDate = Props.getInstance().getProperty("targetDate");
 
         // GET ALL INFO AS RESULT
         String responseStr = HTTPRequester.post(nanji).string();

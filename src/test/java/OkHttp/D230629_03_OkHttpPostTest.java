@@ -1,7 +1,7 @@
 package OkHttp;
 
 import com.daanta.domain.CampManager;
-import com.daanta.conf.PropsCommon;
+import com.daanta.conf.Props;
 import com.daanta.domain.Camp;
 import com.daanta.utils.Utils;
 import lombok.extern.slf4j.Slf4j;
@@ -63,7 +63,7 @@ public class D230629_03_OkHttpPostTest {
     public void testRun() throws Exception {
 
         // pref
-        String targetDate = PropsCommon.getInstance().getProperty("targetDate");
+        String targetDate = Props.getInstance().getProperty("targetDate");
         log.debug("TARGET DATE: {}", targetDate);
 
         // GET ALL INFO AS RESULT

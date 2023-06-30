@@ -1,11 +1,9 @@
 package com.daanta.domain;
 
-import com.daanta.conf.PropsCommon;
+import com.daanta.conf.Props;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 
 // Manage domain of all
 
@@ -18,7 +16,7 @@ public class CampManager {
         
         // Prepare property values
         log.debug("\n\n<<< LOADING PROPS OF {} START >>>", campName);
-        Properties p = PropsCommon.getInstance();
+        Properties p = Props.getInstance();
         String url = p.getProperty(campName + "Url");
         String headerStr = p.getProperty(campName + "Header");
         String bodyStr = p.getProperty(campName + "Body");
@@ -65,8 +63,18 @@ public class CampManager {
 
     }
 
+    // Preapare all camp data
     public static void initializeCampAll() {
-        nanji = Camp.builder().campName("nanji").build();
+
+        List<String> executeList = List.of(Props.getInstance().get("executeList").toString().split(","));
+        for(String s: executeList) {
+            switch (s) {
+                case "nanji" -> nanji = Camp.builder().campName("nanji").build();
+                default -> {
+                }
+            }
+        }
+
     }
 
     // Get Camp instance with the name what user want.
