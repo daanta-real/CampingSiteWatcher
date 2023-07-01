@@ -1,6 +1,6 @@
 package Threads;
 
-import com.daanta.domain.CampManager;
+import com.daanta.conf.Camps;
 import com.daanta.conf.Props;
 import com.daanta.domain.Camp;
 import com.daanta.utils.HTTPRequester;
@@ -36,7 +36,7 @@ public class D230629_04_ThreadControl {
     public boolean checkNanji_noLog() throws Exception {
 
         // pref
-        Camp nanji = CampManager.getCamp("nanji");
+        Camp nanji = Camps.getCamp("nanji");
         String targetDate = Props.getInstance().getProperty("targetDate");
 
         // GET ALL INFO AS RESULT
@@ -69,11 +69,11 @@ public class D230629_04_ThreadControl {
             log.debug("확인: {}", result);
         }, 0, 10, TimeUnit.SECONDS);
 
-//        // Turn on as it is for 60 secs, then you can find 6 ~ 7 messages
-//        Thread.sleep(60000);
-//
-//        // After 60 secs Shutdown the service and exit the app
-//        service.shutdown();
+        // Turn on as it is for 60 secs, then you can find 6 ~ 7 messages
+        Thread.sleep(60000);
+
+        // After 60 secs Shutdown the service and exit the app
+        service.shutdown();
 
         // Sleep indefinitely to keep the task running
         Thread.sleep(Long.MAX_VALUE);

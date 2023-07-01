@@ -1,6 +1,6 @@
-package com.daanta.domain;
+package com.daanta.conf;
 
-import com.daanta.conf.Props;
+import com.daanta.domain.Camp;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.*;
@@ -8,11 +8,14 @@ import java.util.*;
 // Manage domain of all
 
 @Slf4j
-public class CampManager {
+public class Camps {
 
+    private static boolean isLoaded = false;
+
+    // Camp list
     private static Camp nanji;
 
-    public static Map<String, Object> initializeCampOne(String campName) {
+    public static Map<String, Object> initOne(String campName) {
         
         // Prepare property values
         log.debug("\n\n<<< LOADING PROPS OF {} START >>>", campName);
@@ -64,7 +67,7 @@ public class CampManager {
     }
 
     // Preapare all camp data
-    public static void initializeCampAll() {
+    private static void init() {
 
         List<String> executeList = List.of(Props.getInstance().get("executeList").toString().split(","));
         for(String s: executeList) {
@@ -75,10 +78,15 @@ public class CampManager {
             }
         }
 
+        isLoaded = true;
+
     }
 
     // Get Camp instance with the name what user want.
     public static Camp getCamp(String campName) throws Exception {
+        if(!isLoaded) {
+            init();
+        }
         return switch(campName) {
             case "nanji": yield nanji;
             default: throw new Exception();

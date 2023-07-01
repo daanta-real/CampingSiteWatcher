@@ -1,6 +1,6 @@
 package OkHttp;
 
-import com.daanta.domain.CampManager;
+import com.daanta.conf.Camps;
 import com.daanta.conf.Props;
 import com.daanta.domain.Camp;
 import com.daanta.utils.Utils;
@@ -19,7 +19,7 @@ public class D230629_03_OkHttpPostTest {
 
     public ResponseBody campPost(Camp c) throws Exception {
 
-        nanji = CampManager.getCamp("nanji");
+        nanji = Camps.getCamp("nanji");
         ResponseBody result = null;
 
         // MODE 1. FORM REQUEST

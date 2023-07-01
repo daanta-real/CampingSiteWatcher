@@ -1,5 +1,6 @@
 package com.daanta.domain;
 
+import com.daanta.conf.Camps;
 import com.daanta.utils.Utils;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +18,7 @@ public class Camp {
 
     @Builder
     public Camp(String campName) {
-        Map<String, Object> campValues = CampManager.initializeCampOne(campName);
+        Map<String, Object> campValues = Camps.initOne(campName);
         this.url = String.valueOf(campValues.get("url"));
         this.header = (Map<String, String>) campValues.get("header");
         this.body = (Map<String, String>) campValues.get("body");
