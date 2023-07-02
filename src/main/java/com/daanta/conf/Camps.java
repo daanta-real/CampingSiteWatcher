@@ -14,6 +14,7 @@ public class Camps {
 
     // Camp list
     private static Camp nanji;
+    private static Camp noeul;
 
     public static Map<String, Object> initOne(String campName) {
         
@@ -71,8 +72,10 @@ public class Camps {
 
         List<String> executeList = List.of(Props.getInstance().get("executeList").toString().split(","));
         for(String s: executeList) {
+            Camp noel;
             switch (s) {
                 case "nanji" -> nanji = Camp.builder().campName("nanji").build();
+                case "noeul" -> noeul = Camp.builder().campName("noeul").build();
                 default -> {
                 }
             }
@@ -89,6 +92,7 @@ public class Camps {
         }
         return switch(campName) {
             case "nanji": yield nanji;
+            case "noeul": yield noeul;
             default: throw new Exception();
         };
     }
