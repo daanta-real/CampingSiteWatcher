@@ -8,28 +8,38 @@ import java.time.LocalDate;
 @Slf4j
 public class D230702_01_Noel_DateSeqCaculation {
 
-    public int calc(int org) {
-        String dateString = "20230702";
+    public int calc(String orgDateStr, String trgDateStr, String orgSeqStr) {
 
-        LocalDate date = LocalDate.parse(dateString, java.time.format.DateTimeFormatter.BASIC_ISO_DATE);
+        LocalDate orgDate = LocalDate.parse(orgDateStr, java.time.format.DateTimeFormatter.BASIC_ISO_DATE);
+        log.debug("DATE: {}", orgDate);
 
-        LocalDate resultDate = date.plusDays(org);
+        int orgSeq = Integer.parseInt(orgSeqStr);
+        LocalDate resultDate = orgDate.plusDays(orgSeq);
         int year = resultDate.getYear();
+        int month = resultDate.getMonthValue();
+        int day = resultDate.getDayOfMonth();
+        log.debug("[ORG] Y:{} / M: {} / D: {}", year, month, day);
 
         LocalDate firstDayOfYear = LocalDate.of(year, 1, 1);
-        int daysDifference = (int) firstDayOfYear.until(resultDate).getDays();
+        int daysDiff = firstDayOfYear.until(resultDate).getDays();
+        log.debug("결과 일자 차이: {}", daysDiff);
 
-        System.out.println(org + "(of the year " + year + ") = " + (daysDifference + 1) + "");
+        int result = orgSeq + daysDiff;
+        log.debug("{}일의 일련번호가 {}입니까? 그럼 {}일의 일련번호는 {}으로 예상됩니다.",
+                orgDateStr, orgSeq, trgDateStr, result);
+        System.out.println(orgSeq + "번째 날은 " + year + "년의 " + (daysDiff + 1) + "번째 날입니다.");
 
-        return daysDifference;
+        return result;
+
     }
 
     @Test
     public void test1() {
-        String dayStr = "296";
-        int day = Integer.valueOf(dayStr);
-
-
+        String dateOrg = "20230702";
+        String dateTarget = "20230702";
+        String currSeq = "296";
+        int result = calc(dateOrg, dateTarget, currSeq);
+        log.debug("결과 반환값: {}", result);
 
     }
 
