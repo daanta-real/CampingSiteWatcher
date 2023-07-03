@@ -13,6 +13,15 @@
 - Ui-dong 우이동 캠핑장
 - Cheonwang Mt. 천왕산 캠핑장
 
+# 🏕️ Todo Features 🏕️
+- Accomodation type selection
+  1) By period: 1 Night 2 Days, 2 nights 3 days, ...
+  2) By number of people: 2 person, 4 person, ...
+
+- Multi-target surveillance function
+
+  A feature that can monitor multiple targets regardless of the number of guests, facility type, and campsite
+
 # 🏕️ License 🏕️
 - You must use this source only for personal study purpose. Do not use it for any other purpose or you may be sued by government agencies for real.
 
