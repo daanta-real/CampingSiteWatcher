@@ -8,19 +8,19 @@ import java.util.Properties;
 @Slf4j
 public class Props {
 
-    private static Properties instance;
+    private static Props instance;
     private Props() {
     }
 
     private static void init() {
-        instance = new Properties();
+        Properties propOrg = new Properties();
         try (InputStream is = Props.class.getClassLoader().getResourceAsStream("config.properties")) {
             log.debug("\n\n<<< LOADING ALL PROPS START >>>");
-            instance.load(is);
-            log.debug("PROPERTIES LIST: {}", instance.stringPropertyNames());
+            propOrg.load(is);
+            log.debug("PROPERTIES LIST: {}", propOrg.stringPropertyNames());
             log.debug("　┌──────────────────────────────────────────────────────────────────────────────────────────");
-            for (String key: instance.stringPropertyNames()) {
-                String value = instance.getProperty(key);
+            for (String key: propOrg.stringPropertyNames()) {
+                String value = propOrg.getProperty(key);
                 log.debug("　│  {} = '{}'", key, value);
             }
             log.debug("　└──────────────────────────────────────────────────────────────────────────────────────────");
@@ -30,7 +30,7 @@ public class Props {
         }
     }
 
-    public static Properties getInstance() {
+    public static Props getInstance() {
         if(instance == null) init();
         return instance;
     }
