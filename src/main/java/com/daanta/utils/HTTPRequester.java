@@ -1,6 +1,6 @@
 package com.daanta.utils;
 
-import com.daanta.domain.Camp;
+import com.daanta.domain.CampBase;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 
@@ -9,7 +9,7 @@ import java.util.Map;
 @Slf4j
 public class HTTPRequester {
 
-    public static ResponseBody post(Camp c) {
+    public static ResponseBody post(CampBase c) {
 
         ResponseBody result = null;
 

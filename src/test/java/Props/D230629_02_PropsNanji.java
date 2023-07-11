@@ -1,5 +1,6 @@
 package Props;
 
+import com.daanta.conf.Props;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.*;
@@ -13,9 +14,9 @@ public class D230629_02_PropsNanji {
         
         // Prepare property values
         log.debug("LOADING PROPS OF {}..", campName);
-        Properties p = D230627_02_Props.getInstance();
-        String url = p.getProperty(campName + "Url");
-        String headerStr = p.getProperty(campName + "Header");
+        Map<String, String> p = Props.getInstance();
+        String url = p.get(campName + "Url");
+        String headerStr = p.get(campName + "Header");
         String bodyStr = p.getProperty(campName + "Body");
         log.debug("\n\nSTART\n\nurl: {}\nheader: {}\nbody: {}", url, headerStr, bodyStr);
 

@@ -2,7 +2,7 @@ package OkHttp;
 
 import com.daanta.conf.Camps;
 import com.daanta.conf.Props;
-import com.daanta.domain.Camp;
+import com.daanta.domain.CampBase;
 import com.daanta.utils.Utils;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
@@ -15,9 +15,9 @@ import java.util.Map;
 @Slf4j
 public class D230629_03_OkHttpPostTest {
 
-    private static Camp nanji;
+    private static CampBase nanji;
 
-    public ResponseBody campPost(Camp c) throws Exception {
+    public ResponseBody campPost(CampBase c) throws Exception {
 
         nanji = Camps.getCamp("nanji");
         ResponseBody result = null;

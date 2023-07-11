@@ -7,17 +7,19 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
 
+// Common values reardless of camp type
+
 @Slf4j
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Camp {
+public class CampBase {
 
     private String url;
     private Map<String, String> header;
     private Map<String, String> body;
 
     @Builder
-    public Camp(String campName) {
+    public CampBase(String campName) {
         Map<String, Object> campValues = Camps.initOne(campName);
         this.url = String.valueOf(campValues.get("url"));
         this.header = (Map<String, String>) campValues.get("header");

@@ -12,18 +12,15 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.*;
 import java.nio.charset.StandardCharsets;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 
 @Slf4j
 public class D230628_01_FetchPOSTTest {
 
-    private static Properties p;
+    private static Map<String, Object> pr;
     @BeforeAll
     public static void loadProp() {
-        p = D230627_02_Props.getInstance();
+        pr = D230627_02_Props.getInstance();
     }
 
     public static String httpFetch_POST(Map<String, Object> info) {
@@ -168,9 +165,9 @@ public class D230628_01_FetchPOSTTest {
     @Test
     public void testNanji() {
 
-        String nanjiUrl = p.getProperty("nanjiUrl");
-        String nanjiHeader = p.getProperty("nanjiHeader");
-        String nanjiPayload = p.getProperty("nanjiPayload");
+        String nanjiUrl = Optional.ofNullable(pr.get("nanjiUrl")).orElse(null)
+        String nanjiHeader = pr.get("nanjiHeader");
+        String nanjiPayload = pr.get("nanjiPayload");
         log.debug("\n\nSTART\n\ntargetUrl: {}\nheader: {}\npayload: {}", nanjiUrl, nanjiHeader, nanjiPayload);
 
         Map<String, Object> info = new HashMap<>();

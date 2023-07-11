@@ -1,6 +1,6 @@
 package com.daanta.conf;
 
-import com.daanta.domain.Camp;
+import com.daanta.domain.CampBase;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.*;
@@ -13,8 +13,8 @@ public class Camps {
     private static boolean isLoaded = false;
 
     // Camp list
-    private static Camp nanji;
-    private static Camp noeul;
+    private static CampBase nanji;
+    private static CampBase inter;
 
     public static Map<String, Object> initOne(String campName) {
         
@@ -70,12 +70,12 @@ public class Camps {
     // Preapare all camp data
     private static void init() {
 
-        List<String> executeList = List.of(Props.getInstance().get("executeList").toString().split(","));
-        for(String s: executeList) {
-            Camp noel;
+        List<String> campList = List.of(Props.getInstance().get("campList").toString().split(","));
+        for(String s: campList) {
+            CampBase noel;
             switch (s) {
-                case "nanji" -> nanji = Camp.builder().campName("nanji").build();
-                case "noeul" -> noeul = Camp.builder().campName("noeul").build();
+                case "nanji" -> nanji = CampBase.builder().campName("nanji").build();
+                case "noeul" -> inter = CampBase.builder().campName("noeul").build();
                 default -> {
                 }
             }
@@ -86,13 +86,13 @@ public class Camps {
     }
 
     // Get Camp instance with the name what user want.
-    public static Camp getCamp(String campName) throws Exception {
+    public static CampBase getCamp(String campName) throws Exception {
         if(!isLoaded) {
             init();
         }
         return switch(campName) {
             case "nanji": yield nanji;
-            case "noeul": yield noeul;
+            case "noeul": yield inter;
             default: throw new Exception();
         };
     }

@@ -1,27 +1,35 @@
 package Props;
 
+import com.daanta.conf.Props;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
+import java.util.Map;
 import java.util.Properties;
 
 @Slf4j
 public class D230627_02_Props {
 
-    private static Properties instance;
+    private static Map<String, Object> instance;
     private D230627_02_Props() {
     }
 
-    public static Properties getInstance() {
-        if(instance != null) return instance;
-        instance = new Properties();
+    @Test
+    private static void init() {
+        Properties temp = new Properties();
         try (InputStream is = D230627_02_Props.class.getClassLoader().getResourceAsStream("config.properties")) {
+
+            // Load all
             log.debug("\n\n<<< LOADING ALL PROPS START >>>");
-            instance.load(is);
-            log.debug("PROPERTIES LIST: {}", instance.stringPropertyNames());
+            temp.load(is);
+            log.debug("PROPERTIES LIST (ALL): {}", temp.stringPropertyNames());
+
+            log.debug("CAMP LIST: {}");
+
             log.debug("　┌──────────────────────────────────────────────────────────────────────────────────────────");
-            for (String key : instance.stringPropertyNames()) {
-                String value = instance.getProperty(key);
+            for (String key: temp.stringPropertyNames()) {
+                String value = temp.getProperty(key);
                 log.debug("　│  {} = '{}'", key, value);
             }
             log.debug("　└──────────────────────────────────────────────────────────────────────────────────────────");
@@ -29,6 +37,10 @@ public class D230627_02_Props {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static Map<String, Object> getInstance() {
+        if(instance == null) init();
         return instance;
     }
 

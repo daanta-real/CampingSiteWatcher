@@ -2,7 +2,7 @@ package Threads;
 
 import com.daanta.conf.Camps;
 import com.daanta.conf.Props;
-import com.daanta.domain.Camp;
+import com.daanta.domain.CampBase;
 import com.daanta.utils.HTTPRequester;
 import com.daanta.utils.Utils;
 import lombok.extern.slf4j.Slf4j;
@@ -36,7 +36,7 @@ public class D230629_04_ThreadControl {
     public boolean checkNanji_noLog() throws Exception {
 
         // pref
-        Camp nanji = Camps.getCamp("nanji");
+        CampBase nanji = Camps.getCamp("nanji");
         String targetDate = Props.getInstance().getProperty("targetDate");
 
         // GET ALL INFO AS RESULT
