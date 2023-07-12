@@ -1,4 +1,4 @@
-package Archived;
+package CampIfnoes;
 
 import com.google.gson.GsonBuilder;
 import lombok.extern.slf4j.Slf4j;
@@ -165,20 +165,20 @@ public class D230628_01_FetchPOSTTest {
     @Test
     public void testNanji() {
 
-        String nanjiUrl = Optional.ofNullable(pr.get("nanjiUrl")).orElse(null)
-        String nanjiHeader = pr.get("nanjiHeader");
-        String nanjiPayload = pr.get("nanjiPayload");
-        log.debug("\n\nSTART\n\ntargetUrl: {}\nheader: {}\npayload: {}", nanjiUrl, nanjiHeader, nanjiPayload);
-
-        Map<String, Object> info = new HashMap<>();
-        info.put("targetUrl", nanjiUrl);
-        info.put("header", nanjiHeader);
-        info.put("payload", nanjiPayload);
-        //info.put("responseType", "json");
-        log.debug("\n\nCOMPLETE REQUEST:\n\n{}\n", new GsonBuilder().setPrettyPrinting().create().toJson(info));
-
-        String result = httpFetch_POST(info);
-        log.debug("result: {}", result);
+//        String nanjiUrl = Optional.ofNullable(pr.get("nanjiUrl")).orElse(null);
+//        String nanjiHeader = pr.get("nanjiHeader");
+//        String nanjiPayload = pr.get("nanjiPayload");
+//        log.debug("\n\nSTART\n\ntargetUrl: {}\nheader: {}\npayload: {}", nanjiUrl, nanjiHeader, nanjiPayload);
+//
+//        Map<String, Object> info = new HashMap<>();
+//        info.put("targetUrl", nanjiUrl);
+//        info.put("header", nanjiHeader);
+//        info.put("payload", nanjiPayload);
+//        //info.put("responseType", "json");
+//        log.debug("\n\nCOMPLETE REQUEST:\n\n{}\n", new GsonBuilder().setPrettyPrinting().create().toJson(info));
+//
+//        String result = httpFetch_POST(info);
+//        log.debug("result: {}", result);
 
     }
 

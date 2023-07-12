@@ -35,21 +35,23 @@ public class D230629_04_ThreadControl {
 
     public boolean checkNanji_noLog() throws Exception {
 
-        // pref
-        CampBase nanji = Camps.getCamp("nanji");
-        String targetDate = Props.getInstance().getProperty("targetDate");
+//        // pref
+//        CampBase nanji = Camps.getCamp("nanji");
+//        String targetDate = Props.getInstance().getProperty("targetDate");
+//
+//        // GET ALL INFO AS RESULT
+//        String responseStr = HTTPRequester.post(nanji).string();
+//        Map<String, Object> result = Utils.gson.fromJson(responseStr, Map.class);
+//
+//        // EXTRACT TARGET INFO FROM RESULT
+//        Map<String, Object> allDatesResult = (Map<String, Object>) result.get("resultListTm");
+//        Map<String, String> targetDateResult = (Map<String, String>) allDatesResult.get(targetDate);
+//
+//        double availables = Double.parseDouble(String.valueOf(targetDateResult.get("RESVE_POSBL_CNT")));
+//
+//        return availables > 0;
 
-        // GET ALL INFO AS RESULT
-        String responseStr = HTTPRequester.post(nanji).string();
-        Map<String, Object> result = Utils.gson.fromJson(responseStr, Map.class);
-
-        // EXTRACT TARGET INFO FROM RESULT
-        Map<String, Object> allDatesResult = (Map<String, Object>) result.get("resultListTm");
-        Map<String, String> targetDateResult = (Map<String, String>) allDatesResult.get(targetDate);
-
-        double availables = Double.parseDouble(String.valueOf(targetDateResult.get("RESVE_POSBL_CNT")));
-
-        return availables > 0;
+        return false;
 
     }
 

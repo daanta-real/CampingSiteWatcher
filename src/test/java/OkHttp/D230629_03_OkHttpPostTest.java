@@ -63,26 +63,26 @@ public class D230629_03_OkHttpPostTest {
     public void testRun() throws Exception {
 
         // pref
-        String targetDate = Props.getInstance().getProperty("targetDate");
-        log.debug("TARGET DATE: {}", targetDate);
-
-        // GET ALL INFO AS RESULT
-        String responseStr = campPost(nanji).string();
-        Map<String, Object> result = Utils.gson.fromJson(responseStr, Map.class);
-        //log.debug("\n\nRESULT:\n\n{}\n", Utils.getPrettyJson(result));
-
-        // EXTRACT TARGET INFO FROM RESULT
-        Map<String, Object> allDatesResult = (Map<String, Object>) result.get("resultListTm");
-        Map<String, String> targetDateResult = (Map<String, String>) allDatesResult.get(targetDate);
-        log.debug("TARGET DATE'S RESULT: {}", Utils.getPrettyJson(targetDateResult));
-
-        double availables = Double.parseDouble(String.valueOf(targetDateResult.get("RESVE_POSBL_CNT")));
-        log.debug("AVAILABLES: {}", availables);
-
-        boolean isAvailable = availables > 0;
-        log.debug("IS RESERVATION AVAILABLE?: {}", isAvailable);
-        log.debug("\n\nIN CONCLUSION, AT {}, {} ARE AVAILABLE, SO RESERVATION IS {}.",
-                targetDate, availables, isAvailable ? "OPEN" : "CLOSED");
+//        String targetDate = Props.getInstance().get("targetDate");
+//        log.debug("TARGET DATE: {}", targetDate);
+//
+//        // GET ALL INFO AS RESULT
+//        String responseStr = campPost(nanji).string();
+//        Map<String, Object> result = Utils.gson.fromJson(responseStr, Map.class);
+//        //log.debug("\n\nRESULT:\n\n{}\n", Utils.getPrettyJson(result));
+//
+//        // EXTRACT TARGET INFO FROM RESULT
+//        Map<String, Object> allDatesResult = (Map<String, Object>) result.get("resultListTm");
+//        Map<String, String> targetDateResult = (Map<String, String>) allDatesResult.get(targetDate);
+//        log.debug("TARGET DATE'S RESULT: {}", Utils.getPrettyJson(targetDateResult));
+//
+//        double availables = Double.parseDouble(String.valueOf(targetDateResult.get("RESVE_POSBL_CNT")));
+//        log.debug("AVAILABLES: {}", availables);
+//
+//        boolean isAvailable = availables > 0;
+//        log.debug("IS RESERVATION AVAILABLE?: {}", isAvailable);
+//        log.debug("\n\nIN CONCLUSION, AT {}, {} ARE AVAILABLE, SO RESERVATION IS {}.",
+//                targetDate, availables, isAvailable ? "OPEN" : "CLOSED");
 
     }
 
