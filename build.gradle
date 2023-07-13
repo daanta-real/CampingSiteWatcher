@@ -12,6 +12,7 @@ repositories {
 
 dependencies {
 
+    // JUnit for testing
     testImplementation platform('org.junit:junit-bom:latest.integration')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 
