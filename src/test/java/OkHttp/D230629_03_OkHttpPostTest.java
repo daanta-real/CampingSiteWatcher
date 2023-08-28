@@ -1,9 +1,8 @@
 package OkHttp;
 
-import com.daanta.conf.Camps;
-import com.daanta.conf.Props;
-import com.daanta.domain.CampBase;
-import com.daanta.utils.Utils;
+import com.daanta.camp.domain.Camps;
+import com.daanta.camp.domain.CampBase;
+import com.daanta.camp.utils.Utils;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 import org.junit.jupiter.api.Test;

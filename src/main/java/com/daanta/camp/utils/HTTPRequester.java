@@ -1,6 +1,6 @@
-package com.daanta.utils;
+package com.daanta.camp.utils;
 
-import com.daanta.domain.CampBase;
+import com.daanta.camp.domain.CampBase;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 
@@ -35,7 +35,8 @@ public class HTTPRequester {
             Request req = reqBuilder.build();
 
             // SHOOT!
-            Response resp = Utils.okHttp.newCall(req).execute(); // Sync
+            Response resp; // Sync
+            resp = Utils.okHttp.newCall(req).execute();
             if (resp.isSuccessful()) {
                 result = resp.body();
             } else {

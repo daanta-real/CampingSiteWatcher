@@ -1,6 +1,5 @@
-package com.daanta.conf;
+package com.daanta.camp.domain;
 
-import com.daanta.domain.CampBase;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.*;

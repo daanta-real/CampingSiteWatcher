@@ -14,12 +14,13 @@ repositories {
 
 dependencies {
 
-    // JUnit for testing
-    testImplementation platform('org.junit:junit-bom:latest.integration')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+
+    /**
+     * LOGGING
+     */
 
     // 로깅 라이브러리
-    // api 'org.apache.utils.logging.log4j:log4j-core' <<< 안쓸려고..
     // 1. Bridge
     // https://mvnrepository.com/artifact/org.slf4j/jcl-over-slf4j
     implementation 'org.slf4j:jcl-over-slf4j:latest.integration'
@@ -33,13 +34,42 @@ dependencies {
     // https://mvnrepository.com/artifact/ch.qos.logback/logback-core
     implementation 'ch.qos.logback:logback-core:latest.integration'
 
-    // String 취급을 쉽게 해주는 Apache Commons Lang
-    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
-    implementation 'org.apache.commons:commons-lang3:latest.integration'
 
-    // 파싱 등을 처리하기 위해 영입한 Apache Commons Text
-    // https://mvnrepository.com/artifact/org.apache.commons/commons-text
-    implementation 'org.apache.commons:commons-text:latest.integration'
+
+    /**
+     * TESTING
+     */
+    // JUnit for testing
+    testImplementation platform('org.junit:junit-bom:latest.integration')
+    testImplementation 'org.junit.jupiter:junit-jupiter:latest.integration'
+
+
+
+    /**
+     * SPRING BOOT
+     */
+    // Essential Spring Boot Implementations: Main
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
+    implementation 'org.springframework.boot:spring-boot-starter-web:latest.integration'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor:latest.integration'
+
+    // Essential Spring Boot Implementations: Tesing
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools
+    implementation 'org.springframework.boot:spring-boot-devtools:latest.integration'
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-tomcat
+    implementation 'org.springframework.boot:spring-boot-starter-tomcat:latest.integration'
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:latest.integration'
+
+
+
+    /**
+     * DBMS
+     */
+    // https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:latest.integration'
+    // https://mvnrepository.com/artifact/org.postgresql/postgresql
+    implementation 'org.postgresql:postgresql:latest.integration'
 
     // 로깅 어노테이션을 쓰기 위한 롬복
     // LOMBOK은 사용 전제조건이 까다로우므로 사용 시 주의.
@@ -56,13 +86,39 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.28'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.28'
 
+
+
+    /**
+     * UTILITIES - STRING
+     */
+
+    // String 취급을 쉽게 해주는 Apache Commons Lang
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    implementation 'org.apache.commons:commons-lang3:latest.integration'
+
+    // 파싱 등을 처리하기 위해 영입한 Apache Commons Text
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-text
+    implementation 'org.apache.commons:commons-text:latest.integration'
+
     // JSON 처리 라이브러리 GSON
     // https://mvnrepository.com/artifact/com.google.code.gson/gson
     implementation 'com.google.code.gson:gson:latest.integration'
 
+
+
+    /**
+     * UTILITIES - SERVER
+     */
+
     // HTTP REQUEST 등을 처리하기 위한 OKHTTP
     // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
     implementation 'com.squareup.okhttp3:okhttp:latest.integration'
+
+    // XSS 공격을 방어하기 위한 LUXY XSS 서블릿
+    // https://mvnrepository.com/artifact/com.navercorp.lucy/lucy-xss-servlet
+    implementation 'com.navercorp.lucy:lucy-xss-servlet:latest.integration'
+
+
 
 }
 

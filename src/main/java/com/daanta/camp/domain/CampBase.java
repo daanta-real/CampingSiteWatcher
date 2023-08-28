@@ -1,13 +1,10 @@
-package com.daanta.domain;
+package com.daanta.camp.domain;
 
-import com.daanta.conf.Camps;
-import com.daanta.utils.Utils;
+import com.daanta.camp.utils.Utils;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
-
-// Common values reardless of camp type
 
 @Slf4j
 @Getter

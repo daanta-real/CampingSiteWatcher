@@ -1,6 +1,6 @@
 package Archived;
 
-import Props.D230627_02_Props;
+import Props.D230627_02_PropsTest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,7 @@ public class D230627_01_FetchGETTest {
     private static Map<String, Object> pr;
     @BeforeAll
     public static void loadProp() {
-        pr = D230627_02_Props.getInstance();
+        pr = D230627_02_PropsTest.getInstance();
     }
 
     @Test

@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import Props.D230627_02_Props;
+import Props.D230627_02_PropsTest;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -20,7 +20,7 @@ public class D230628_01_FetchPOSTTest {
     private static Map<String, Object> pr;
     @BeforeAll
     public static void loadProp() {
-        pr = D230627_02_Props.getInstance();
+        pr = D230627_02_PropsTest.getInstance();
     }
 
     public static String httpFetch_POST(Map<String, Object> info) {

@@ -1,4 +1,4 @@
-package com.daanta.domain;
+package com.daanta.camp.domain;
 
 
 import lombok.extern.slf4j.Slf4j;
@@ -7,9 +7,5 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class CampNanji extends CampBase {
-
-    public void init() {
-
-    }
 
 }

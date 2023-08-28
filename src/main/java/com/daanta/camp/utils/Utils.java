@@ -1,4 +1,4 @@
-package com.daanta.utils;
+package com.daanta.camp.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

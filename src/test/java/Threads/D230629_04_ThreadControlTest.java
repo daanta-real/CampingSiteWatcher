@@ -1,21 +1,15 @@
 package Threads;
 
-import com.daanta.conf.Camps;
-import com.daanta.conf.Props;
-import com.daanta.domain.CampBase;
-import com.daanta.utils.HTTPRequester;
-import com.daanta.utils.Utils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
-import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
-public class D230629_04_ThreadControl {
+public class D230629_04_ThreadControlTest {
 
     @Test
     public void threadTest1() throws InterruptedException {
