@@ -1,6 +1,7 @@
 package com.daanta.camp.utils;
 
-import com.daanta.camp.domain.CampBase;
+import com.daanta.camp.domain.Target;
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 
@@ -9,46 +10,45 @@ import java.util.Map;
 @Slf4j
 public class HTTPRequester {
 
-    public static ResponseBody post(CampBase c) {
+    public static ResponseBody post(Target c) throws Exception {
 
-        ResponseBody result = null;
+        ResponseBody result;
 
-        // MODE 1. FORM TYPE REQUEST
-        try{
+        // FORM TYPE REQUEST
+        Request req = makeRequest(c);
 
-            Request.Builder reqBuilder = new Request.Builder();
-
-            // URL & HEADER
-            reqBuilder.url(c.getUrl());
-            for(Map.Entry<String, String> e: c.getHeader().entrySet()) {
-                reqBuilder.header(e.getKey(), e.getValue());
-            }
-
-            // BODY
-            FormBody.Builder form = new FormBody.Builder();
-            for(Map.Entry<String, String> e: c.getBody().entrySet()) {
-                form.add(e.getKey(), e.getValue());
-            }
-            RequestBody reqBody = form.build();
-            reqBuilder.post(reqBody);
-
-            Request req = reqBuilder.build();
-
-            // SHOOT!
-            Response resp; // Sync
-            resp = Utils.okHttp.newCall(req).execute();
-            if (resp.isSuccessful()) {
-                result = resp.body();
-            } else {
-                throw new Exception();
-            }
-
-        } catch(Exception e) {
-            e.printStackTrace();
+        // SHOOT
+        Response resp; // Sync
+        resp = Utils.okHttp.newCall(req).execute();
+        if (resp.isSuccessful()) {
+            result = resp.body();
+        } else {
+            throw new Exception();
         }
 
         return result;
 
+    }
+
+    @NonNull
+    private static Request makeRequest(@NonNull Target c) {
+        Request.Builder reqBuilder = new Request.Builder();
+
+        // URL & HEADER
+        reqBuilder.url(c.getUrl());
+        for(Map.Entry<String, String> e: c.getHeader().entrySet()) {
+            reqBuilder.header(e.getKey(), e.getValue());
+        }
+
+        // BODY
+        FormBody.Builder form = new FormBody.Builder();
+        for(Map.Entry<String, String> e: c.getFormBody().entrySet()) {
+            form.add(e.getKey(), e.getValue());
+        }
+        RequestBody reqBody = form.build();
+        reqBuilder.post(reqBody);
+
+        return reqBuilder.build();
     }
 
 }

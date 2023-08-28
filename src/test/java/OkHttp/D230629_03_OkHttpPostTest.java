@@ -1,7 +1,6 @@
 package OkHttp;
 
-import com.daanta.camp.domain.Camps;
-import com.daanta.camp.domain.CampBase;
+import com.daanta.camp.domain.Target;
 import com.daanta.camp.utils.Utils;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
@@ -14,45 +13,45 @@ import java.util.Map;
 @Slf4j
 public class D230629_03_OkHttpPostTest {
 
-    private static CampBase nanji;
+    private static Target nanji;
 
-    public ResponseBody campPost(CampBase c) throws Exception {
-
-        nanji = Camps.getCamp("nanji");
+    public ResponseBody campPost(Target c) throws Exception {
+//
+//        nanji = Camps.getCamp("nanji");
         ResponseBody result = null;
-
-        // MODE 1. FORM REQUEST
-        try{
-
-            Request.Builder reqBuilder = new Request.Builder();
-
-            // URL & HEADER
-            reqBuilder.url(c.getUrl());
-            for(Map.Entry<String, String> e: c.getHeader().entrySet()) {
-                reqBuilder.header(e.getKey(), e.getValue());
-            }
-
-            // BODY
-            FormBody.Builder form = new FormBody.Builder();
-            for(Map.Entry<String, String> e: c.getBody().entrySet()) {
-                form.add(e.getKey(), e.getValue());
-            }
-            RequestBody reqBody = form.build();
-            reqBuilder.post(reqBody);
-
-            Request req = reqBuilder.build();
-
-            // SHOOT!
-            Response resp = Utils.okHttp.newCall(req).execute(); // Sync
-            if (resp.isSuccessful()) {
-                result = resp.body();
-            } else {
-                throw new Exception();
-            }
-
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+//
+//        // MODE 1. FORM REQUEST
+//        try{
+//
+//            Request.Builder reqBuilder = new Request.Builder();
+//
+//            // URL & HEADER
+//            reqBuilder.url(c.getUrl());
+//            for(Map.Entry<String, String> e: c.getHeader().entrySet()) {
+//                reqBuilder.header(e.getKey(), e.getValue());
+//            }
+//
+//            // BODY
+//            FormBody.Builder form = new FormBody.Builder();
+//            for(Map.Entry<String, String> e: c.getFormBody().entrySet()) {
+//                form.add(e.getKey(), e.getValue());
+//            }
+//            RequestBody reqBody = form.build();
+//            reqBuilder.post(reqBody);
+//
+//            Request req = reqBuilder.build();
+//
+//            // SHOOT!
+//            Response resp = Utils.okHttp.newCall(req).execute(); // Sync
+//            if (resp.isSuccessful()) {
+//                result = resp.body();
+//            } else {
+//                throw new Exception();
+//            }
+//
+//        } catch(Exception e) {
+//            e.printStackTrace();
+//        }
 
         return result;
 

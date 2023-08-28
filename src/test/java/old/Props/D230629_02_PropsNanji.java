@@ -1,29 +1,23 @@
-package com.daanta.camp.domain;
+package old.Props;
 
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.*;
 
-// Manage domain of all
+// Testing OkHttp for apply to this project
 
 @Slf4j
-public class Camps {
+public class D230629_02_PropsNanji {
 
-    private static boolean isLoaded = false;
-
-    // Camp list
-    private static CampBase nanji;
-    private static CampBase inter;
-
-    public static Map<String, Object> initOne(String campName) {
+    public static Map<String, Object> loadCampingSiteProps(String campName) {
         
 //        // Prepare property values
-//        log.debug("\n\n<<< LOADING PROPS OF {} START >>>", campName);
-//        Properties p = Props.getInstance();
-//        String url = p.getProperty(campName + "Url");
-//        String headerStr = p.getProperty(campName + "Header");
+//        log.debug("LOADING PROPS OF {}..", campName);
+//        Map<String, String> p = Props.getInstance();
+//        String url = p.get(campName + "Url");
+//        String headerStr = p.get(campName + "Header");
 //        String bodyStr = p.getProperty(campName + "Body");
-//        log.debug("\n  - url: {}\n  - header: {}\n  - body: {}", url, headerStr, bodyStr);
+//        log.debug("\n\nSTART\n\nurl: {}\nheader: {}\nbody: {}", url, headerStr, bodyStr);
 //
 //        // Header's String separators are: '|' for params, and ',' for key and values
 //        log.debug("PREPARING HEADERS..");
@@ -58,42 +52,11 @@ public class Camps {
 //
         Map<String, Object> resultMap = new HashMap<>();
 //        resultMap.put("url", url);
-//        resultMap.put("header", header);
-//        resultMap.put("body", body);
+//        resultMap.put("header:", header);
+//        resultMap.put("body:", body);
 //
-//        log.debug("\n<<< LOADING PROPS OF {} FINISHED >>>\n", campName);
         return resultMap;
 
-    }
-
-    // Preapare all camp data
-    private static void init() {
-//
-//        List<String> campList = List.of(Props.getInstance().get("campList").toString().split(","));
-//        for(String s: campList) {
-//            CampBase noel;
-//            switch (s) {
-//                case "nanji" -> nanji = CampBase.builder().campName("nanji").build();
-//                case "noeul" -> inter = CampBase.builder().campName("noeul").build();
-//                default -> {
-//                }
-//            }
-//        }
-//
-//        isLoaded = true;
-
-    }
-
-    // Get Camp instance with the name what user want.
-    public static CampBase getCamp(String campName) throws Exception {
-        if(!isLoaded) {
-            init();
-        }
-        return switch(campName) {
-            case "nanji": yield nanji;
-            case "noeul": yield inter;
-            default: throw new Exception();
-        };
     }
 
 }

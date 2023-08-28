@@ -1,27 +1,38 @@
-package com.daanta.camp.conf;
+package old.Props;
 
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 @Slf4j
-public class Props {
+public class D230627_02_PropsTest {
 
-    private static Props instance;
-    private Props() {
+    private static Map<String, Object> instance;
+    private D230627_02_PropsTest() {
     }
 
+    @Test
     private static void init() {
-        Properties propOrg = new Properties();
-        try (InputStream is = Props.class.getClassLoader().getResourceAsStream("application.properties")) {
+        instance = new HashMap<>();
+        Properties temp = new Properties();
+        try (InputStream is = D230627_02_PropsTest.class.getClassLoader().getResourceAsStream("application.properties")) {
+
+            // Load all
             log.debug("\n\n<<< LOADING ALL PROPS START >>>");
-            propOrg.load(is);
-            log.debug("PROPERTIES LIST: {}", propOrg.stringPropertyNames());
+            temp.load(is);
+            log.debug("PROPERTIES LIST (ALL): {}", temp.stringPropertyNames());
+
+            log.debug("CAMP LIST: {}");
+
             log.debug("　┌──────────────────────────────────────────────────────────────────────────────────────────");
-            for (String key: propOrg.stringPropertyNames()) {
-                String value = propOrg.getProperty(key);
+            for (String key: temp.stringPropertyNames()) {
+                String value = temp.getProperty(key);
                 log.debug("　│  {} = '{}'", key, value);
+                instance.put(key, value);
             }
             log.debug("　└──────────────────────────────────────────────────────────────────────────────────────────");
             log.debug("\n<<< LOADING ALL PROPS FINISHED >>>\n");
@@ -30,7 +41,7 @@ public class Props {
         }
     }
 
-    public static Props getInstance() {
+    public static Map<String, Object> getInstance() {
         if(instance == null) init();
         return instance;
     }

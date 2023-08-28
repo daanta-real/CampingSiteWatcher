@@ -1,11 +1,11 @@
-package CampIfnoes;
+package old.CampIfnoes;
 
 import com.google.gson.GsonBuilder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import Props.D230627_02_PropsTest;
+import old.Props.D230627_02_PropsTest;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
