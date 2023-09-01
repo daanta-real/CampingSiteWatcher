@@ -1,6 +1,6 @@
 package com.daanta.camp.utils;
 
-import com.daanta.camp.domain.Target;
+import com.daanta.camp.domain.Site;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
@@ -10,7 +10,7 @@ import java.util.Map;
 @Slf4j
 public class HTTPRequester {
 
-    public static ResponseBody post(Target c) throws Exception {
+    public static ResponseBody post(Site c) throws Exception {
 
         ResponseBody result;
 
@@ -31,7 +31,7 @@ public class HTTPRequester {
     }
 
     @NonNull
-    private static Request makeRequest(@NonNull Target c) {
+    private static Request makeRequest(@NonNull Site c) {
         Request.Builder reqBuilder = new Request.Builder();
 
         // URL & HEADER

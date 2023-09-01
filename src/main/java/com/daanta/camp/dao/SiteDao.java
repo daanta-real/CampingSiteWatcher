@@ -1,19 +1,19 @@
 package com.daanta.camp.dao;
 
-import com.daanta.camp.domain.Target;
+import com.daanta.camp.domain.Site;
 
 import java.util.List;
 
 public interface SiteDao {
 
-    List<Target> selectList(Target target);
+    List<Site> selectList(Site target);
 
-    Target selectOne(Target target);
+    Site selectOne(Site target);
 
-    void insertOne(Target target);
+    void insertOne(Site target);
 
-    void updateOne(Target target);
+    void updateOne(Site target);
 
-    void delete(Target target);
+    void delete(Site target);
 
 }

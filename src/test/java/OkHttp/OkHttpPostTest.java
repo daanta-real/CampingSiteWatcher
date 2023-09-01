@@ -1,21 +1,18 @@
 package OkHttp;
 
-import com.daanta.camp.domain.Target;
-import com.daanta.camp.utils.Utils;
+import com.daanta.camp.domain.Site;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 import org.junit.jupiter.api.Test;
 
-import java.util.Map;
-
 // Testing OkHttp Fetch Post
 
 @Slf4j
-public class D230629_03_OkHttpPostTest {
+public class OkHttpPostTest {
 
-    private static Target nanji;
+    private static Site nanji;
 
-    public ResponseBody campPost(Target c) throws Exception {
+    public ResponseBody campPost(Site c) throws Exception {
 //
 //        nanji = Camps.getCamp("nanji");
         ResponseBody result = null;
