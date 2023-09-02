@@ -1,27 +1,26 @@
 package base;
 
-import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @Slf4j
-@SpringBootTest(classes = com.daanta.camp.Main.class)
+@ExtendWith(SpringExtension.class)
+@TestPropertySource("classpath:/application.yml")
 public class PropertiesLoadingTest {
 
-    @NonNull
-    private final String nanji_type;
+    @Value("${spring.datasource.url}")
+    private String url;
 
-    // Null 방지 때문에 울며 겨자먹기로 넣었다
-    @Autowired
-    public PropertiesLoadingTest(@NonNull String nanjiType) {
-        this.nanji_type = nanjiType;
-    }
-
+    // FAILED. I can't find out why. I would skip this.
     @Test
     public void propsVerification() {
-        log.debug("{}", nanji_type);
+        log.debug("테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트");
+        log.debug("{}", url);
+        log.debug("테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트");
     }
 
 }
