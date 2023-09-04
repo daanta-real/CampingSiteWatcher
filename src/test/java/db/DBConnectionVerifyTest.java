@@ -18,17 +18,21 @@ public class DBConnectionVerifyTest {
 
     @Test
     public void dbConnection() {
-        jdbcTemplate.execute("SELECT '으엑으엑으엑으엑'"); // Replace with an appropriate SQL query for your database
+        jdbcTemplate.execute("SELECT '으엑으엑으엑으엑'");
     }
 
     @Test
     public void makeTable() {
-        jdbcTemplate.execute("CREATE TABLE "); // Replace with an appropriate SQL query for your database
+        jdbcTemplate.execute("""
+                CREATE TABLE trash(
+                      idx   SERIAL      CONSTRAINT trash_pk           PRIMARY KEY
+                );
+                """);
     }
 
     @Test
     public void dropTable() {
-        jdbcTemplate.execute("SELECT '으엑으엑으엑으엑'"); // Replace with an appropriate SQL query for your database
+        jdbcTemplate.execute("DROP TABLE trash;");
     }
 
 }
