@@ -1,27 +1,36 @@
-<!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.daanta.camp.dao.SiteDAO">
 
+    <select id="getSequence" resultType="int">
+        SELECT 
+    </select>
+
     <select id="selectList" resultType="com.daanta.camp.domain.Site" parameterType="com.daanta.camp.domain.Site">
-        /* QUERY: SiteMapper.selectList */
+        /* SiteMapper.selectList */
         SELECT
             *
         FROM
             sites
         WHERE 1=1
             <if test="url != null and url != ''">
-                AND url = #{url}
+                AND INSTR(url, #{url}) > 0
+            </if>
+            <if test="header != null and header != ''">
+                AND INSTR(header, #{header}) > 0
+            </if>
+            <if test="form_body != null and form_body != ''">
+                AND INSTR(form_body, #{form_body}) > 0
             </if>
             <if test="query != null and query != ''">
-                AND query = #{query}
+                AND INSTR(query, #{query}) > 0
             </if>
-        <!-- You can add more conditions as needed -->
+            <if test="latest_value != null and latest_value != ''">
+                AND INSTR(latest_value, #{latest_value}) > 0
+            </if>
     </select>
 
     <select id="selectOne" resultType="com.daanta.camp.domain.Site" parameterType="com.daanta.camp.domain.Site">
-        /* QUERY: SiteMapper.selectOne */
+        /* SiteMapper.selectOne */
         SELECT
             *
         FROM
@@ -31,7 +40,7 @@
     </select>
 
     <insert id="insertOne" parameterType="com.daanta.camp.domain.Site">
-        /* QUERY: SiteMapper.insertOne */
+        /* SiteMapper.insertOne */
         INSERT INTO
             sites
             (
@@ -52,7 +61,7 @@
     </insert>
 
     <update id="updateOne" parameterType="com.daanta.camp.domain.Site">
-        /* QUERY: SiteMapper.updateOne */
+        /* SiteMapper.updateOne */
         UPDATE
             sites
         <set>
@@ -77,7 +86,7 @@
     </update>
 
     <delete id="delete" parameterType="com.daanta.camp.domain.Site">
-        /* QUERY: SiteMapper.delete */
+        /* SiteMapper.delete */
         DELETE FROM
             sites
         WHERE 1=1
