@@ -2,6 +2,8 @@ package db;
 
 import com.daanta.camp.Main;
 import com.daanta.camp.dao.SiteDAO;
+import com.daanta.camp.domain.Site;
+import com.daanta.camp.domain.SiteNanji;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,25 @@ public class SiteDAOTest {
 
     @Test
     public void selectKey() {
-        log.debug("키얻었다: {}", siteDAO.selectKey());
+        int result = siteDAO.selectKey();
+        log.debug("I GOT THE NEW SEQ KEY:\n\n{}\n", result);
+    }
+
+    /* I'm gonna test later because making other tables are not completed */
+    @Test
+    public void selectList() {
+        ;
+    }
+
+    @Test
+    public void insertOne() {
+        Site nanji = SiteNanji.builder()
+                .url("url")
+                .header(null)
+                .formBody(null)
+                .query(null)
+                .build();
+        log.debug("nanji: {}", nanji);
     }
 
 }
