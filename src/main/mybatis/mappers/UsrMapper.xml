@@ -1,3 +1,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.daanta.camp.dao.SiteDAO">
 </mapper>
+<!--
+<if test="idx != null and idx != ''">
+    AND INSTR(idx, #{idx}) > 0
+</if>
+<if test="grd_idx != null and grd_idx != ''">
+    AND INSTR(grd_idx, #{grd_idx}) > 0
+</if>
+<if test="id != null and id != ''">
+    AND INSTR(id, #{id}) > 0
+</if>
+<if test="mail != null and mail != ''">
+    AND INSTR(mail, #{mail}) > 0
+</if>
+<if test="pw != null and pw != ''">
+    AND INSTR(pw, #{pw}) > 0
+</if>
+<if test="nm != null and nm != ''">
+    AND INSTR(nm, #{nm}) > 0
+</if>
+<if test="reg_dt != null and reg_dt != ''">
+    AND INSTR(reg_dt, #{reg_dt}) > 0
+</if>
+<if test="chg_dt != null and chg_dt != ''">
+    AND INSTR(chg_dt, #{chg_dt}) > 0
+</if>
+<if test="del_dt != null and del_dt != ''">
+    AND INSTR(del_dt, #{del_dt}) > 0
+</if>
+-->

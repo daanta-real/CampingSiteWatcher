@@ -1,31 +1,68 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.daanta.camp.dao.SiteDAO">
 
-    <select id="getSequence" resultType="int">
-        SELECT 
+    <select id="selectKey" resultType="int">
+        SELECT NEXTVAL('site_id_seq')
     </select>
 
+    <!-- 일단 부분검색으로 셋팅했으나 나중에 수정 필요함. -->
     <select id="selectList" resultType="com.daanta.camp.domain.Site" parameterType="com.daanta.camp.domain.Site">
         /* SiteMapper.selectList */
         SELECT
-            *
+              SIT.idx
+            , SIT.nm
+            , SIT.type
+            , SIT.url
+            , SIT.query
+            , SIT.lastval
+            , SIT.reg_id
+            , SIT.reg_dt
+            , SIT.chg_id
+            , SIT.chg_dt
+            , SIT.del_dt
+            , HEA.idx
+            , HEA.key
+            , HEA.val
+            , BDY.idx
+            , BDY.key
+            , BDY.val
         FROM
-            sites
+            SELECT * FROM site SIT
+            LEFT OUTER JOIN header   HEA ON SIT.idx = HEA.site_idx
+            LEFT OUTER JOIN formbody BDY ON SIT.idx = BDY.site_idx
         WHERE 1=1
+            <if test="idx != null and idx != ''">
+                AND INSTR(idx, #{idx}) > 0
+            </if>
+            <if test="nm != null and nm != ''">
+                AND INSTR(nm, #{nm}) > 0
+            </if>
+            <if test="type != null and type != ''">
+                AND INSTR(type, #{type}) > 0
+            </if>
             <if test="url != null and url != ''">
                 AND INSTR(url, #{url}) > 0
-            </if>
-            <if test="header != null and header != ''">
-                AND INSTR(header, #{header}) > 0
-            </if>
-            <if test="form_body != null and form_body != ''">
-                AND INSTR(form_body, #{form_body}) > 0
             </if>
             <if test="query != null and query != ''">
                 AND INSTR(query, #{query}) > 0
             </if>
-            <if test="latest_value != null and latest_value != ''">
-                AND INSTR(latest_value, #{latest_value}) > 0
+            <if test="lastval != null and lastval != ''">
+                AND INSTR(lastval, #{lastval}) > 0
+            </if>
+            <if test="reg_id != null and reg_id != ''">
+                AND INSTR(reg_id, #{reg_id}) > 0
+            </if>
+            <if test="reg_dt != null and reg_dt != ''">
+                AND INSTR(reg_dt, #{reg_dt}) > 0
+            </if>
+            <if test="chg_id != null and chg_id != ''">
+                AND INSTR(chg_id, #{chg_id}) > 0
+            </if>
+            <if test="chg_dt != null and chg_dt != ''">
+                AND INSTR(chg_dt, #{chg_dt}) > 0
+            </if>
+            <if test="del_dt != null and del_dt != ''">
+                AND INSTR(del_dt, #{del_dt}) > 0
             </if>
     </select>
 
