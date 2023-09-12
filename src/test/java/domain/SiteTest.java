@@ -11,8 +11,7 @@ import java.util.Map;
 @Slf4j
 public class SiteTest {
 
-    @Test
-    void siteObjCreationTest() {
+    Site makeSiteNanji1() {
 
         // Prepare values
         String url = "";
@@ -25,16 +24,61 @@ public class SiteTest {
         String query = "div";
 
         // Build
-        Site nanji = SiteNanji.builder()
+        Site site = SiteNanji.builder()
                 .url(url)
                 .header(header)
                 .formBody(formBody)
                 .query(query)
                 .build();
 
-        // Verify
-        log.debug("\nA SITE INSTANCE:\n{}\n", nanji);
+        log.debug("\nA SITE INSTANCE:\n{}\n", site);
+        return site;
 
+    }
+
+    @Test
+    void makeSiteNanji1Test() {
+        Site siteNanji1 = makeSiteNanji1();
+    }
+
+    Site makeSiteNanji2() {
+        Site nanji = SiteNanji.builder()
+            .url("url")
+            .header(null)
+            .formBody(null)
+            .query(null)
+            .build();
+        log.debug("nanji: {}", nanji);
+        return nanji;
+    }
+
+    @Test
+    void makeSiteNanji2Test() {
+        Site nanji = makeSiteNanji2();
+    }
+
+    public static Site makeSiteNanji3() {
+        Site nanji = SiteNanji.builder()
+                .nm("Website name")
+                .url("https://www.naver.com/")
+                .query("q")
+                .header(Map.of(
+                        "header1", "h1",
+                        "header2", "h2"
+                ))
+                .formBody(Map.of(
+                        "body1", "b1",
+                        "body2", "b2"
+                ))
+                .lastval("recent value")
+                .build();
+        log.debug("nanji: {}", nanji);
+        return nanji;
+    }
+
+    @Test
+    void makeSiteNanji3Test() {
+        Site nanji = makeSiteNanji3();
     }
 
 }

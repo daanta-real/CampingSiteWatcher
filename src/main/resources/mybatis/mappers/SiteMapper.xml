@@ -19,9 +19,9 @@
             , SIT.url
             , SIT.query
             , SIT.lastval
-            , SIT.reg_id
+            , SIT.reg_idx
             , SIT.reg_dt
-            , SIT.chg_id
+            , SIT.chg_idx
             , SIT.chg_dt
             , SIT.del_dt
             , HEA.idx
@@ -53,20 +53,20 @@
             <if test="lastval != null and lastval != ''">
                 AND INSTR(lastval, #{lastval}) > 0
             </if>
-            <if test="reg_id != null and reg_id != ''">
-                AND INSTR(reg_id, #{reg_id}) > 0
+            <if test="regIdx != null and regIdx != ''">
+                AND INSTR(reg_idx, #{regIdx}) > 0
             </if>
-            <if test="reg_dt != null and reg_dt != ''">
-                AND INSTR(reg_dt, #{reg_dt}) > 0
+            <if test="regDt != null and regDt != ''">
+                AND INSTR(reg_dt, #{regDt}) > 0
             </if>
-            <if test="chg_id != null and chg_id != ''">
-                AND INSTR(chg_id, #{chg_id}) > 0
+            <if test="chgIdx != null and chgIdx != ''">
+                AND INSTR(chg_idx, #{chgIdx}) > 0
             </if>
-            <if test="chg_dt != null and chg_dt != ''">
-                AND INSTR(chg_dt, #{chg_dt}) > 0
+            <if test="chgDt != null and chgDt != ''">
+                AND INSTR(chg_dt, #{chgDt}) > 0
             </if>
-            <if test="del_dt != null and del_dt != ''">
-                AND INSTR(del_dt, #{del_dt}) > 0
+            <if test="delDt != null and delDt != ''">
+                AND INSTR(del_dt, #{delDt}) > 0
             </if>
     </select>
 
@@ -75,7 +75,7 @@
         SELECT
             *
         FROM
-            sites
+            site
         WHERE 1=1
             AND id = #{id}
     </select>
@@ -83,9 +83,9 @@
     <insert id="insertOne" parameterType="com.daanta.camp.domain.Site">
         /* SiteMapper.insertOne */
         INSERT INTO
-            sites
+            site
             (
-                  idx
+                idx
                 <if test="nm != null and nm != ''">
                     , nm
                 </if>
@@ -101,11 +101,11 @@
                 <if test="lastval != null and lastval != ''">
                     , lastval
                 </if>
-                <if test="reg_id != null and reg_id != ''">
-                    , reg_id
+                <if test="regIdx != null and regIdx != ''">
+                    , reg_idx
                 </if>
-                <if test="chg_id != null and chg_id != ''">
-                    , chg_id
+                <if test="chgIdx != null and chgIdx != ''">
+                    , chg_idx
                 </if>
             )
         VALUES
@@ -126,11 +126,11 @@
                 <if test="lastval != null and lastval != ''">
                     , #{lastval}
                 </if>
-                <if test="reg_id != null and reg_id != ''">
-                    , #{reg_id}
+                <if test="regIdx != null and regIdx != ''">
+                    , #{regIdx}
                 </if>
-                <if test="chg_id != null and chg_id != ''">
-                    , #{chg_id}
+                <if test="chgIdx != null and chgIdx != ''">
+                    , #{chgIdx}
                 </if>
             )
     </insert>
@@ -138,7 +138,7 @@
     <update id="updateOne" parameterType="com.daanta.camp.domain.Site">
         /* SiteMapper.updateOne */
         UPDATE
-            sites
+            site
         <set>
             <if test="url != null and url != ''">
                 url = #{url},
@@ -163,7 +163,7 @@
     <delete id="delete" parameterType="com.daanta.camp.domain.Site">
         /* SiteMapper.delete */
         DELETE FROM
-            sites
+            site
         WHERE 1=1
             AND id = #{id}
     </delete>
