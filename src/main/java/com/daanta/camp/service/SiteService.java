@@ -1,18 +1,21 @@
 package com.daanta.camp.service;
 
-import com.daanta.camp.dao.SiteDAO;
 import com.daanta.camp.domain.Site;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-@Service
-public class SiteService {
+import java.util.List;
 
-    @Autowired
-    private SiteDAO siteDAO;
+public interface SiteService {
 
-    int add(Site site) {
-        return siteDAO.insertOne(site);
-    }
+    int selectKey();
+
+    List<Site> selectList(Site site);
+
+    Site selectOne(Site site);
+
+    int insertOne(Site site);
+
+    void updateOne(Site site);
+
+    void delete(Site site);
 
 }

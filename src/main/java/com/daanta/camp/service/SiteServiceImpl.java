@@ -1,47 +1,46 @@
-package com.daanta.camp.dao;
+package com.daanta.camp.service;
 
 import com.daanta.camp.domain.Site;
-import org.apache.ibatis.session.SqlSession;
+import com.daanta.camp.mapper.SiteMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-// SITE DAO - MyBatis Version
-@Repository
-public class SiteDAOBatis implements SiteDAO {
+@Service
+public class SiteServiceImpl implements SiteService {
 
     @Autowired
-    private SqlSession sqlSession;
+    private SiteMapper siteMapper;
 
     @Override
     public int selectKey() {
-        return sqlSession.selectOne("com.daanta.camp.dao.SiteDAO.selectKey");
+        return siteMapper.selectKey();
     }
 
     @Override
     public List<Site> selectList(Site site) {
-        return null;
+        return siteMapper.selectList(site);
     }
 
     @Override
     public Site selectOne(Site site) {
-        return null;
+        return siteMapper.selectOne(site);
     }
 
     @Override
     public int insertOne(Site site) {
-        return 0;
+        return siteMapper.insertOne(site);
     }
 
     @Override
     public void updateOne(Site site) {
-
+        siteMapper.updateOne(site);
     }
 
     @Override
     public void delete(Site site) {
-
+        siteMapper.delete(site);
     }
 
 }

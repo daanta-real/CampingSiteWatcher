@@ -1,4 +1,4 @@
-package com.daanta.camp.dao;
+package com.daanta.camp.mapper;
 
 import com.daanta.camp.domain.Site;
 import org.apache.ibatis.annotations.Mapper;
@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 @Mapper
-public interface SiteDAO {
+public interface SiteMapper {
 
     int selectKey();
 

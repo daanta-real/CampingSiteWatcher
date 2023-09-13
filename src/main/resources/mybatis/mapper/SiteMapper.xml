@@ -3,7 +3,43 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="SiteDAO">
+<mapper namespace="com.daanta.camp.mapper.SiteMapper">
+
+    <sql id="searchCondition">
+        <if test="idx != null and idx != ''">
+            AND INSTR(idx, #{idx}) > 0
+        </if>
+        <if test="nm != null and nm != ''">
+            AND INSTR(nm, #{nm}) > 0
+        </if>
+        <if test="type != null and type != ''">
+            AND INSTR(type, #{type}) > 0
+        </if>
+        <if test="url != null and url != ''">
+            AND INSTR(url, #{url}) > 0
+        </if>
+        <if test="query != null and query != ''">
+            AND INSTR(query, #{query}) > 0
+        </if>
+        <if test="lastval != null and lastval != ''">
+            AND INSTR(lastval, #{lastval}) > 0
+        </if>
+        <if test="regIdx != null and regIdx != ''">
+            AND INSTR(reg_idx, #{regIdx}) > 0
+        </if>
+        <if test="regDt != null and regDt != ''">
+            AND INSTR(reg_dt, #{regDt}) > 0
+        </if>
+        <if test="chgIdx != null and chgIdx != ''">
+            AND INSTR(chg_idx, #{chgIdx}) > 0
+        </if>
+        <if test="chgDt != null and chgDt != ''">
+            AND INSTR(chg_dt, #{chgDt}) > 0
+        </if>
+        <if test="delDt != null and delDt != ''">
+            AND INSTR(del_dt, #{delDt}) > 0
+        </if>
+    </sql>
 
     <select id="selectKey" resultType="int">
         SELECT NEXTVAL('site_idx_seq')
@@ -35,39 +71,7 @@
             LEFT OUTER JOIN header   HEA ON SIT.idx = HEA.site_idx
             LEFT OUTER JOIN formbody BDY ON SIT.idx = BDY.site_idx
         WHERE 1=1
-            <if test="idx != null and idx != ''">
-                AND INSTR(idx, #{idx}) > 0
-            </if>
-            <if test="nm != null and nm != ''">
-                AND INSTR(nm, #{nm}) > 0
-            </if>
-            <if test="type != null and type != ''">
-                AND INSTR(type, #{type}) > 0
-            </if>
-            <if test="url != null and url != ''">
-                AND INSTR(url, #{url}) > 0
-            </if>
-            <if test="query != null and query != ''">
-                AND INSTR(query, #{query}) > 0
-            </if>
-            <if test="lastval != null and lastval != ''">
-                AND INSTR(lastval, #{lastval}) > 0
-            </if>
-            <if test="regIdx != null and regIdx != ''">
-                AND INSTR(reg_idx, #{regIdx}) > 0
-            </if>
-            <if test="regDt != null and regDt != ''">
-                AND INSTR(reg_dt, #{regDt}) > 0
-            </if>
-            <if test="chgIdx != null and chgIdx != ''">
-                AND INSTR(chg_idx, #{chgIdx}) > 0
-            </if>
-            <if test="chgDt != null and chgDt != ''">
-                AND INSTR(chg_dt, #{chgDt}) > 0
-            </if>
-            <if test="delDt != null and delDt != ''">
-                AND INSTR(del_dt, #{delDt}) > 0
-            </if>
+            <include refid="searchCondition" />
     </select>
 
     <select id="selectOne" resultType="com.daanta.camp.domain.Site" parameterType="com.daanta.camp.domain.Site">
@@ -155,6 +159,8 @@
             <if test="latestValue != null and latestValue != ''">
                 latest_value = #{latestValue},
             </if>
+            chg_dt = NOW(),
+            chg_id = COALESCE(#{chgId}, NULL)
         </set>
         WHERE 1=1
             AND id = #{id}
