@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.daanta.camp.dao.SiteDAO">
+<mapper namespace="SiteDAO">
 
     <select id="selectKey" resultType="int">
         SELECT NEXTVAL('site_idx_seq')

@@ -51,6 +51,11 @@ public abstract class Site {
         m.put("body"   , this.formBody);
         m.put("query"  , this.query);
         m.put("lastval", this.lastval);
+        m.put("regIdx" , this.regIdx);
+        m.put("regDt"  , this.regDt);
+        m.put("chgIdx" , this.chgIdx);
+        m.put("chgDt"  , this.chgDt);
+        m.put("delDt"  , this.delDt);
         return Utils.getPrettyJson(m);
     }
 

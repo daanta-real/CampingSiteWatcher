@@ -32,7 +32,7 @@ public class DBConnectionVerifyTest {
 
     @Test
     public void dropTable() {
-        jdbcTemplate.execute("DROP TABLE trash;");
+        jdbcTemplate.execute("DROP TABLE IF EXISTS trash;");
     }
 
 }
