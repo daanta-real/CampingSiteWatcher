@@ -8,6 +8,10 @@ java {
     sourceCompatibility = JavaVersion.VERSION_20
 }
 
+ext {
+    lombokVersion = '1.18.28'
+}
+
 repositories {
     mavenCentral()
 }
@@ -25,12 +29,14 @@ dependencies {
     //  2) Settings > Build, Execution, Depolyment > Compiler > Annotation Processors
     //     > Enable annotation processing 에 체크해야 함
     // 3. testAnnotationPrcessor를 같이 써주지 않으면, 자바 버전을 내렸을 때 에러를 뿜는 경우가 있어서 써주는 것이 좋다.
+    // 4. Lombok은 컴파일/테스트컴파일 시에만 작동하므로, compileOnly만 필요하며, 실행 시 환경인 implementation에서의 사용은 필요 없다.
+    //    한편, annoataionProcessor로 지정을 필히 해줘야 한다.
+    //    결론적으로, compileOnly/testCompileOnly/annotationProcessor/testAnnotationProcessor 네 개가 필요하다.
     // https://mvnrepository.com/artifact/org.projectlombok/lombok
-    implementation 'org.projectlombok:lombok:1.18.28'
-    compileOnly "org.projectlombok:lombok:1.18.28"
-    testCompileOnly "org.projectlombok:lombok:1.18.28"
-    annotationProcessor 'org.projectlombok:lombok:1.18.28'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.28'
+    compileOnly 'org.projectlombok:lombok:${lombokVersion}'
+    testCompileOnly 'org.projectlombok:lombok:${lombokVersion}'
+    annotationProcessor 'org.projectlombok:lombok:${lombokVersion}'
+    testAnnotationProcessor 'org.projectlombok:lombok:${lombokVersion}'
 
 
 
@@ -96,15 +102,12 @@ dependencies {
     /**
      * UTILITIES - STRING
      */
-
     // String 취급을 쉽게 해주는 Apache Commons Lang
     // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
     implementation 'org.apache.commons:commons-lang3:latest.integration'
-
     // 파싱 등을 처리하기 위해 영입한 Apache Commons Text
     // https://mvnrepository.com/artifact/org.apache.commons/commons-text
     implementation 'org.apache.commons:commons-text:latest.integration'
-
     // JSON 처리 라이브러리 GSON
     // https://mvnrepository.com/artifact/com.google.code.gson/gson
     implementation 'com.google.code.gson:gson:latest.integration'
@@ -114,11 +117,9 @@ dependencies {
     /**
      * UTILITIES - SERVER
      */
-
     // HTTP REQUEST 등을 처리하기 위한 OKHTTP
     // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
     implementation 'com.squareup.okhttp3:okhttp:latest.integration'
-
     // XSS 공격을 방어하기 위한 LUXY XSS 서블릿
     // https://mvnrepository.com/artifact/com.navercorp.lucy/lucy-xss-servlet
     implementation 'com.navercorp.lucy:lucy-xss-servlet:latest.integration'
