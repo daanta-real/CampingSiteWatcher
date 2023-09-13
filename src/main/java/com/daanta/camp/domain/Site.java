@@ -11,11 +11,13 @@ import java.util.Map;
 
 
 // Used for handling one Site
-
 @Getter
 @Setter
 @SuperBuilder
 public abstract class Site {
+
+    // TOTAL
+    private int totalCount;
 
     // SITE TABLE
     private int idx;
@@ -31,10 +33,18 @@ public abstract class Site {
     private Date delDt;
 
     // HEADER TABLE
-    private Map<String, String> header;
+    private String header;
 
     // BODY TABLE
-    private Map<String, String> formBody;
+    private String formBody;
+
+    // USER TABLE
+    private String regUsrNm;
+    private String chgUsrNm;
+
+    // GRADE TABLE
+    private String regGrdNm;
+    private String chgGrdNm;
 
     public Site(String type) {
         this.type = type;
@@ -47,8 +57,6 @@ public abstract class Site {
         m.put("nm"     , this.nm);
         m.put("type"   , this.type);
         m.put("url"    , this.url);
-        m.put("header" , this.header);
-        m.put("body"   , this.formBody);
         m.put("query"  , this.query);
         m.put("lastval", this.lastval);
         m.put("regIdx" , this.regIdx);
@@ -56,6 +64,12 @@ public abstract class Site {
         m.put("chgIdx" , this.chgIdx);
         m.put("chgDt"  , this.chgDt);
         m.put("delDt"  , this.delDt);
+        m.put("header" , this.header);
+        m.put("formBody", this.formBody);
+        m.put("regUsrNm"  , this.regUsrNm);
+        m.put("chgUsrNm"  , this.chgUsrNm);
+        m.put("regGrdNm"  , this.regGrdNm);
+        m.put("chgGrdNm"  , this.chgGrdNm);
         return Utils.getPrettyJson(m);
     }
 
