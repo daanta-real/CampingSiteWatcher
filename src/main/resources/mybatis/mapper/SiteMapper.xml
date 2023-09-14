@@ -72,17 +72,11 @@
             <if test="delDt != null and delDt != ''">
                 AND INSTR(SIT.del_dt, #{delDt}) > 0
             </if>
-            <if test="headerIdx != null and headerIdx != ''">
-                AND INSTR(HEA.idx, #{headerIdx}) > 0
-            </if>
             <if test="headerKey != null and headerKey != ''">
                 AND INSTR(HEA.key, #{headerKey}) > 0
             </if>
             <if test="headerVal != null and headerVal != ''">
                 AND INSTR(HEA.val, #{headerVal}) > 0
-            </if>
-            <if test="bodyIdx != null and bodyIdx != ''">
-                AND INSTR(BDY.idx, #{bodyIdx}) > 0
             </if>
             <if test="bodyKey != null and bodyKey != ''">
                 AND INSTR(BDY.key, #{bodyKey}) > 0
@@ -92,7 +86,7 @@
             </if>
     </select>
 
-    <select id="selectOne" resultType="com.daanta.camp.domain.Site" parameterType="com.daanta.camp.domain.Site">
+    <select id="selectOne" resultType="com.daanta.camp.domain.Site" parameterType="int">
         /* SiteMapper.selectOne */
         SELECT
               SIT.idx
@@ -106,18 +100,22 @@
             , SIT.chg_idx
             , SIT.chg_dt
             , SIT.del_dt
-            , HEA.idx      AS "header_idx"
-            , HEA.key      AS "header_key"
-            , HEA.val      AS "header_val"
-            , BDY.idx      AS "body_idx"
-            , BDY.key      AS "body_key"
-            , BDY.val      AS "body_val"
+            , STRING_AGG(HEA.key || '=' || HEA.val) AS "header"
+            , STRING_AGG(BDY.key || '=' || BDY.val) AS "form_body"
+            , REG.nm    AS "reg_nm"
+            , CHG.nm    AS "chg_nm"
+            , GRR.nm    AS "reg_grd_nm"
+            , GRC.nm    AS "chg_grd_nm"
         FROM
             SELECT * FROM site SIT
-            LEFT OUTER JOIN header   HEA ON SIT.idx = HEA.site_idx
-            LEFT OUTER JOIN formbody BDY ON SIT.idx = BDY.site_idx
+            LEFT OUTER JOIN header   HEA ON SIT.idx     = HEA.site_idx
+            LEFT OUTER JOIN formbody BDY ON SIT.idx     = BDY.site_idx
+            LEFT OUTER JOIN usr      REG ON SIT.reg_idx = REG.idx
+            LEFT OUTER JOIN usr      CHG ON SIT.chg_idx = CHG.idx
+            LEFT OUTER JOIN grd      GRR ON REG.idx     = GRR.idx
+            LEFT OUTER JOIN grd      GRC ON CHG.idx     = GRC.idx
         WHERE 1=1
-            AND id = #{id}
+            AND SIT.idx = #{idx}
     </select>
 
     <insert id="insertOne" parameterType="com.daanta.camp.domain.Site">

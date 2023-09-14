@@ -2,9 +2,9 @@ package domain;
 
 import com.daanta.camp.domain.Site;
 import com.daanta.camp.domain.SiteNanji;
+import com.daanta.camp.utils.Utils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,12 +15,17 @@ public class SiteTest {
 
         // Prepare values
         String url = "";
-        Map<String, String> header = new HashMap<>();
-        header.put("aIs", "a");
-        header.put("bIs", "b");
-        Map<String, String> formBody = new HashMap<>();
-        formBody.put("id", "idid");
-        formBody.put("pw", "[wpw");
+
+        Map<String, String> headerMap = new HashMap<>();
+        headerMap.put("aIs", "a");
+        headerMap.put("bIs", "b");
+        String header = Utils.keyValMapToString(headerMap);
+
+        Map<String, String> formBodyMap = new HashMap<>();
+        formBodyMap.put("id", "idid");
+        formBodyMap.put("pw", "[wpw");
+        String formBody = Utils.keyValMapToString(formBodyMap);
+
         String query = "div";
 
         // Build
@@ -48,7 +53,7 @@ public class SiteTest {
             .formBody(null)
             .query(null)
             .build();
-        log.debug("nanji: {}", nanji);
+        log.debug("\nnanji: {}", nanji);
         return nanji;
     }
 
@@ -62,14 +67,14 @@ public class SiteTest {
                 .nm("Website name")
                 .url("https://www.naver.com/")
                 .query("q")
-                .header(Map.of(
+                .header(Utils.keyValMapToString(Map.of(
                         "header1", "h1",
                         "header2", "h2"
-                ))
-                .formBody(Map.of(
+                )))
+                .formBody(Utils.keyValMapToString(Map.of(
                         "body1", "b1",
                         "body2", "b2"
-                ))
+                )))
                 .lastval("recent value")
                 .build();
         log.debug("nanji: {}", nanji);

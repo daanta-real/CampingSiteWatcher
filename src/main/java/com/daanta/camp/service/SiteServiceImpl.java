@@ -24,8 +24,8 @@ public class SiteServiceImpl implements SiteService {
     }
 
     @Override
-    public Site selectOne(Site site) {
-        return siteMapper.selectOne(site);
+    public Site selectOne(int idx) {
+        return siteMapper.selectOne(idx);
     }
 
     @Override

@@ -12,7 +12,7 @@ public interface SiteMapper {
 
     List<Site> selectList(Site site);
 
-    Site selectOne(Site site);
+    Site selectOne(int idx);
 
     int insertOne(Site site);
 

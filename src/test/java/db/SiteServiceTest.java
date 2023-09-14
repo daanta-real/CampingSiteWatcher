@@ -2,12 +2,15 @@ package db;
 
 import com.daanta.camp.Main;
 import com.daanta.camp.domain.Site;
+import com.daanta.camp.domain.SiteNanji;
 import com.daanta.camp.service.SiteService;
 import domain.SiteTest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 @Slf4j
 @SpringBootTest(classes = Main.class)
@@ -40,10 +43,19 @@ public class SiteServiceTest {
 
     }
 
+    @Test
+    public void selectList_noSearch() {
+        Site siteSearch = SiteNanji.builder()
+                .type("nanji")
+                .build();
+        List<Site> result = siteService.selectList(siteSearch);
+        log.debug("Result List: {}", result);
+    }
+
     /* I'm gonna test later because making other tables are not completed */
     @Test
-    public void selectList() {
-        ;
+    public void selectList_search() {
+
     }
 
 }

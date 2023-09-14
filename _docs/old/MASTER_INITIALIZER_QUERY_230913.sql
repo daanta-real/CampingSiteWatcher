@@ -146,12 +146,12 @@ INSERT INTO header
 VALUES
     (0, 0, 'name', '이름이름'),
     (1, 0, 'page', '2'),
-    (2, 0, 'date', '230901'),
-    (3, 1, 'battery', '100'),
-    (4, 1, 'reserve', 'y'),
-    (5, 2, 'point', '300'),
-    (6, 2, 'price', '150'),
-    (7, 2, 'yen', 'no');
+    (2, 0, 'date', ),
+    (3, 1, , ),
+    (4, 1, , ),
+    (5, 2, , ),
+    (6, 2, , ),
+    (7, 2, , );
 
 /* BDY */
 SELECT SETVAL('formbody_idx_seq', 6);

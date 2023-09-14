@@ -1,32 +1,171 @@
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="userDAO">
-</mapper>
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.daanta.camp.mapper.UsrMapper">
 <!--
-<if test="idx != null and idx != ''">
-    AND INSTR(idx, #{idx}) > 0
-</if>
-<if test="grd_idx != null and grd_idx != ''">
-    AND INSTR(grd_idx, #{grd_idx}) > 0
-</if>
-<if test="id != null and id != ''">
-    AND INSTR(id, #{id}) > 0
-</if>
-<if test="mail != null and mail != ''">
-    AND INSTR(mail, #{mail}) > 0
-</if>
-<if test="pw != null and pw != ''">
-    AND INSTR(pw, #{pw}) > 0
-</if>
-<if test="nm != null and nm != ''">
-    AND INSTR(nm, #{nm}) > 0
-</if>
-<if test="reg_dt != null and reg_dt != ''">
-    AND INSTR(reg_dt, #{reg_dt}) > 0
-</if>
-<if test="chg_dt != null and chg_dt != ''">
-    AND INSTR(chg_dt, #{chg_dt}) > 0
-</if>
-<if test="del_dt != null and del_dt != ''">
-    AND INSTR(del_dt, #{del_dt}) > 0
-</if>
+
+    <select id="selectKey" resultType="int">
+        SELECT NEXTVAL('usr_idx_seq')
+    </select>
+
+    <select id="selectList" resultType="com.daanta.camp.domain.UsrMapper" parameterType="com.daanta.camp.domain.UsrMapper">
+        /* UsrMapper.selectList */
+        SELECT
+              USR.idx
+            , USR.grd_idx
+            , USR.id
+            , USR.mail
+            , USR.pw
+            , USR.nm
+            , USR.reg_dt
+            , USR.chg_dt
+            , USR.del_dt
+            , GRD.idx    AS 'grd_idx'
+            , GRD.nm
+        FROM
+            SELECT * FROM usr USR
+            LEFT OUTER JOIN grd ON USR.grd_idx = GRD.idx
+        grd(
+        idx   INTEGER     CONSTRAINT grd_pk           DEFAULT NEXTVAL('grd_idx_seq') PRIMARY KEY
+        , nm    VARCHAR(50) CONSTRAINT grd_nm_not_null  CHECK (nm IS NOT NULL)
+        );
+        WHERE 1=1
+            <if test="idx != null and idx != ''">
+                AND INSTR(idx, #{idx}) > 0
+            </if>
+            <if test="nm != null and nm != ''">
+                AND INSTR(nm, #{nm}) > 0
+            </if>
+            <if test="type != null and type != ''">
+                AND INSTR(type, #{type}) > 0
+            </if>
+            <if test="url != null and url != ''">
+                AND INSTR(url, #{url}) > 0
+            </if>
+            <if test="query != null and query != ''">
+                AND INSTR(query, #{query}) > 0
+            </if>
+            <if test="lastval != null and lastval != ''">
+                AND INSTR(lastval, #{lastval}) > 0
+            </if>
+            <if test="regIdx != null and regIdx != ''">
+                AND INSTR(reg_idx, #{regIdx}) > 0
+            </if>
+            <if test="regDt != null and regDt != ''">
+                AND INSTR(reg_dt, #{regDt}) > 0
+            </if>
+            <if test="chgIdx != null and chgIdx != ''">
+                AND INSTR(chg_idx, #{chgIdx}) > 0
+            </if>
+            <if test="chgDt != null and chgDt != ''">
+                AND INSTR(chg_dt, #{chgDt}) > 0
+            </if>
+            <if test="delDt != null and delDt != ''">
+                AND INSTR(del_dt, #{delDt}) > 0
+            </if>
+    </select>
+
+    <select id="selectOne" resultType="com.daanta.camp.domain.Site" parameterType="com.daanta.camp.domain.Site">
+        /* SiteMapper.selectOne */
+        SELECT
+            *
+        FROM
+            site
+        WHERE 1=1
+            AND id = #{id}
+    </select>
+
+    <insert id="insertOne" parameterType="com.daanta.camp.domain.Site">
+        /* SiteMapper.insertOne */
+        INSERT INTO
+            site
+            (
+                idx
+                <if test="nm != null and nm != ''">
+                    , nm
+                </if>
+                <if test="type != null and type != ''">
+                    , type
+                </if>
+                <if test="url != null and url != ''">
+                    , url
+                </if>
+                <if test="query != null and query != ''">
+                    , query
+                </if>
+                <if test="lastval != null and lastval != ''">
+                    , lastval
+                </if>
+                <if test="regIdx != null and regIdx != ''">
+                    , reg_idx
+                </if>
+                <if test="chgIdx != null and chgIdx != ''">
+                    , chg_idx
+                </if>
+            )
+        VALUES
+            (
+                #{idx}
+                <if test="nm != null and nm != ''">
+                    , #{nm}
+                </if>
+                <if test="type != null and type != ''">
+                    , #{type}
+                </if>
+                <if test="url != null and url != ''">
+                    , #{url}
+                </if>
+                <if test="query != null and query != ''">
+                    , #{query}
+                </if>
+                <if test="lastval != null and lastval != ''">
+                    , #{lastval}
+                </if>
+                <if test="regIdx != null and regIdx != ''">
+                    , #{regIdx}
+                </if>
+                <if test="chgIdx != null and chgIdx != ''">
+                    , #{chgIdx}
+                </if>
+            )
+    </insert>
+
+    <update id="updateOne" parameterType="com.daanta.camp.domain.Site">
+        /* SiteMapper.updateOne */
+        UPDATE
+            site
+        <set>
+            <if test="url != null and url != ''">
+                url = #{url},
+            </if>
+            <if test="header != null and header != ''">
+                header = #{header},
+            </if>
+            <if test="formBody != null and formBody != ''">
+                form_body = #{formBody},
+            </if>
+            <if test="query != null and query != ''">
+                query = #{query},
+            </if>
+            <if test="latestValue != null and latestValue != ''">
+                latest_value = #{latestValue},
+            </if>
+            chg_dt = NOW(),
+            chg_id = COALESCE(#{chgId}, NULL)
+        </set>
+        WHERE 1=1
+            AND id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="com.daanta.camp.domain.Site">
+        /* SiteMapper.delete */
+        DELETE FROM
+            site
+        WHERE 1=1
+            AND id = #{id}
+    </delete>
 -->
+
+</mapper>

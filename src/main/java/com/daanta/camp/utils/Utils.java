@@ -4,13 +4,12 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import lombok.NonNull;
 import okhttp3.OkHttpClient;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Collections;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Utils {
 
@@ -30,6 +29,13 @@ public class Utils {
             }
         }
         return Collections.emptyMap();
+    }
+
+    public static String keyValMapToString(Map<String, String> map) {
+        return map.entrySet()
+                .stream()
+                .map(entry -> entry.getKey() + "=" + entry.getValue())
+                .collect(Collectors.joining("&"));
     }
 
 }
