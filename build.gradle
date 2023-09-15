@@ -60,11 +60,12 @@ dependencies {
 
 
     /**
-     * TESTING
+     * TESTING (JUnit)
      */
-    // JUnit for testing
-    testImplementation platform('org.junit:junit-bom:latest.integration')
+    // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter
     testImplementation 'org.junit.jupiter:junit-jupiter:latest.integration'
+    // https://mvnrepository.com/artifact/org.junit/junit-bom
+    testImplementation platform('org.junit:junit-bom:latest.integration')
 
 
 
